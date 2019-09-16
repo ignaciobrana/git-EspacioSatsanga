@@ -1,0 +1,6 @@
+﻿;Parámetros para la conexión a la base de datos
+[database]
+host     = localhost
+user     = qh000450_sat_dev
+password = q450DEV794
+database = qh000450_sat_dev

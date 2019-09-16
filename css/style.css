@@ -1,0 +1,352 @@
+/*
+Theme Name: Terra
+Description: A business, portfolio and blog theme.
+Author: BlueOwlCreative
+Theme URI: http://blueowlcreative.com/wp/terra
+Author URI: http://blueowlcreative.com
+Version: 1.1
+License: GNU General Public License
+License URI: license.txt
+*/
+
+@import url("./skeleton.css");
+@import url("./stylesheet.css");
+/*@import url("./flexslider.css");
+@import url("./prettyPhoto.css");
+@import url("./carousel.css");*/
+
+/*----------Manualmente-------------------------------------*/
+.custom_menu #menu > ul > li ul > li > a:hover { background-color: #eb409e;}
+
+.custom_menu2 #menu > ul > li > div { border-top: 2px solid #eb409e;}
+.custom_menu2 .nav_arrow:after  { border-bottom-color: #eb409e;}
+
+.custom_menu3 #menu > ul > li > div { border-top: 2px solid #eb409e;}
+.custom_menu3 .nav_arrow:after { border-bottom-color: #eb409e;}
+
+.custom_menu4 #menu > ul > li > div { border-top: 2px solid #eb409e;}
+.custom_menu4 #menu > ul > li ul > li > a:hover { background-color: #eb409e;}
+.custom_menu4 .nav_arrow:after { border-bottom-color: #eb409e;}
+
+.custom_menu5 #menu > ul > li ul > li > a:hover { background-color: #eb409e;}
+
+#wrapper { border-top: 3px solid rgba(235,64, 158, 0.40); }
+a:hover, a:focus { color:#eb409e; }
+.button:hover,a:hover.button,button:hover,input[type="submit"]:hover,input[type="reset"]:hover,	input[type="button"]:hover, .button_hilite, a.button_hilite { /*color: #fff; background-color:#eb409e;*/ }
+input.button_hilite, a.button_hilite, .button_hilite { color: #fff; background-color:#eb409e;}
+.button_hilite:hover, input.button_hilite:hover, a:hover.button_hilite { color: #fff; background-color: #444444;}
+
+.section_big_title h1 strong { color:#eb409e;}
+a:hover .pic_info.type2 .info_overlay { border-bottom: 1px solid #eb409e;}
+.section_featured_texts h3 a:hover { color:#eb409e;}
+
+.htabs a.selected  { border-top: 1px solid #eb409e;}
+
+.breadcrumb a:hover{ color: #eb409e;}
+
+.tagcloud a:hover { background-color: #eb409e;}
+.month { background-color: #eb409e;}
+.small_month  { background-color: #eb409e;}
+
+.post_meta a:hover{ color: #eb409e;}
+
+#portfolio_filter ul li div:hover{ background-color: #eb409e;}
+.counter-digit { color: #eb409e;}	    		    
+
+.next:hover,.prev:hover{ background-color: #eb409e;}
+.pagination .links a:hover{ background-color: #eb409e;}
+.hilite{ background: rgba(235,64, 158, 0.30);}
+.price_column.price_column_featured ul li.price_column_title{ background: #eb409e;}
+
+blockquote{ border-left: 4px solid #eb409e; }
+
+.info  h2{ background-color: #eb409e;}
+#footer a:hover { color: #eb409e;}
+#footer .latest_post_sidebar img:hover { border: 3px solid #eb409e;}
+#footer.footer_light .latest_post_sidebar img:hover { border: 1px solid #eb409e; background: #eb409e;}
+
+.breadcrumb { display: none; }
+
+/*----------------------------------------------------------*/
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+zx
+.block_header #menu { background-color: #EB409E }
+
+#menu, .block_header #menu  {margin-right:-13px !important; margin-left:0px !important }
+
+#menu > ul > li > a { color:#EB409E; padding: 0px 12px 0px 12px !important; }
+
+.section_big_title { background-color: #fff; padding:1px; }
+
+.section_big_title h1 { font-size:22px; color:#018D36; margin: 30px 0 30px; }
+
+.section_big_title h2 { font-family: 'Lato', arial, sans-serif; font-size:12px; font-style:normal; color:#fff; background: none }
+
+/*.header { background: url("http://www.paula.webconversion.com.ar/wordpress/wp3/wp-content/uploads/header.png") no-repeat 0 0 !important; padding: 5px 0 15px; } */
+
+.block_header #logo { text-align:center }
+
+.page_heading h1 { color:#EB409E; font-weight:bold; }
+
+body, h1, h2, h3, h4, h5, h6, p  { font-size:14px }
+
+i { font-size:16px }
+
+.clearp { clear:both; padding-bottom:15px }
+
+
+/*----- HOME 2018 ------*/
+
+.map-frame {
+    width: 100%;
+    height: 500;
+    position: relative;
+}
+
+.map-content {
+    z-index: 10;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 25%;
+    background-color: white;
+    color: #BA007C;
+	font-size: 1.15em;
+	padding: 25px;
+}
+
+.bnt-mapa-reservar {
+	margin: 0 auto;
+    width: 80%;
+    background-color: green;
+    color: white;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.hero-holder {
+	display: inline-flex;
+    width: 100% !important;
+}
+
+.hero-shot {
+	
+	
+}
+
+.promo-shot{
+	
+}
+
+.hero-holder img {
+    width: 100% !important;
+    height: auto;
+}
+
+.valor{
+	width: 20%;
+	float: left;
+    margin: 20px;
+	color: #BA007C !important;
+	text-align: center;
+}
+
+.valores-link{
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #BA007C !important;
+    line-height: 43px;
+
+}
+
+.negrita{
+font-weight: bold;
+}
+
+
+.tercios{
+	width: 30%;
+    float: left;
+    margin: 10px;
+}
+
+.social-contact{
+	margin-top: 30px;
+    height: 90px;
+}
+
+.contact_submit_wrap{
+text-align: left !important;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+.valor{
+	width: 100%;
+    margin: 10px auto;
+}
+
+.hero-holder {
+	display: block;
+}
+
+.map-content {
+position: relative;
+    top: 0px;
+    right: 0px;
+    width: 100%
+}
+
+.bnt-mapa-reservar {
+    margin-bottom: 10px;
+    width: 50%;
+    padding: 10px
+}
+
+}
+
+.hero-shot{
+			height: 60vh;
+			float: left;
+			width: 60%;
+			background-image: url("http://www.espaciosatsanga.com/wp-content/uploads/Fotos-home1.jpg");
+			background-position: center center;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
+		.hero-shot h4{
+			font-family: 'Playball', cursive;
+		}
+		.hero-promo{
+			height: 60vh;
+			float: left;		
+			width: 40%;
+			background-image: url("http://www.espaciosatsanga.com/wp-content/uploads/yoga-nuevos-horarios-abril.jpg");
+			background-position: center center;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
+
+		.hero-destaque{
+background-color: #6a2e828c;
+    vertical-align: middle;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 10em;
+    color: white;
+	padding-top: 10px;
+}
+
+		.text-left{
+			width: 50%;
+			position: relative;
+			top: 30%;
+			left: 50%;
+		}
+
+		.text-left h4{
+			font-size: 25px;
+			color: white;
+		}
+
+		.left{
+			margin-top: 25px;
+			margin-left: 20px;
+			width: 20%;
+			color: black;
+			float: left;
+		}
+		.left p{
+
+		}
+
+		.right{
+			margin-top: 25px;
+			width: 40%;
+			color: #CBF2F7;
+			float: right;
+			left: 60%;
+			text-align: left;
+			margin-right: 20px;
+		}
+
+		.right span{
+			background-color: #6a2e82;
+			line-height: 2;
+			font-size: 15px;
+			padding: 3px;
+	    	white-space: pre-wrap;
+		}
+
+		.text-right-down{
+			background-color: #5cb171;
+			padding: 7px;
+		}
+		a .text-right-down{
+			color: #CBF2F7;
+		}
+		a:hover, a:focus{
+			color: #EB409E;
+		}
+		.light-italic {
+		    font-weight: 300;
+		    font-style: italic;
+		}
+		.bold-italic {
+		    font-weight: 700;
+		    font-style: italic;
+		}
+		.text-center{
+			text-align: center;
+		}
+		.align-left{
+			text-align: left;
+		}
+		.big{
+			font-size: 35px;
+		}
+
+		@media only screen and (max-width: 500px) {
+		    .hero-shot{
+		    	width:100%;
+		    	background-image: url("http://www.espaciosatsanga.com/wp-content/uploads/Home_izquierda_responsive.jpg");
+				background-position: left center;
+		    }
+		    .text-left {
+		    	top: 20%;
+		    	margin-right: 5px;
+		    	width: 49%;
+		    }
+		    .text-left br {
+			    display: none;
+			}
+		    .text-left h4 {
+    			font-size: 18px;
+    		}	
+		    .hero-promo{
+		    	width:100%;
+		    }
+		    .text-right-top p, .text-right-top span{
+		    	font-size: 13px;
+		    }
+		    .right p, .right span{
+		    	font-size: 13px;
+		    }
+		    .right span br{
+		    	display: none;
+		    }
+		    .big{
+		    	font-size: 25px;
+		    }
+		}

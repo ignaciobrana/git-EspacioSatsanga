@@ -1,0 +1,56 @@
+
+<html>
+<head>
+    <title>select2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="./css/select2.min.css" rel="stylesheet"/>
+
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    
+    <script src="./javascript/select2/select2.min.js"></script>
+    <script src="./javascript/select2/i18n/es.js"></script>
+</head>
+<body>
+    
+    <select class="select2" style="width: 200px" id="simple" name="simple">
+      <option value="l1">Option 1</option>
+      <option value="l2">Suboption 1</option>
+      <option value="l3">Suboption 2</option>
+      <option value="l4">Suboption 3</option>
+      <option value="l5">Option 2</option>
+    </select>
+    <br><br>
+    
+    <select class="select2" style="width: 200px" multiple="multiple" id="multi" name="multi">
+      <option value="l1">Option 1</option>
+      <option value="l2">Suboption 1</option>
+      <option value="l3">Suboption 2</option>
+      <option value="l4">Suboption 3</option>
+      <option value="l5">Option 2</option>
+    </select>
+    <br><br>
+    
+    <input type="button" id="but" onclick="check();" value="click" />
+
+    <script>
+        $(function(){
+            $('.select2').select2({language: "es"});
+
+            $("#simple").append("<option value='l6'>agregado por js</option>");
+            $("#multi").append("<option value='l6'>agregado por js</option>");
+
+            $("#simple").val("l4");
+            $("#simple").select2(); //Estamos refrescando el control
+            $('#multi option[value=l4]').attr('selected','selected');
+            $('#multi option[value=l6]').attr('selected','selected');
+        });
+
+        function check(){
+            var v1 = $("#multi").val(); //devuelve un array con ids
+            var v2 = $("#simple").val();
+        }
+    </script>
+</body>
+</html>

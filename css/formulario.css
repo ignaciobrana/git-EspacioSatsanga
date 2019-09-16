@@ -1,0 +1,72 @@
+.tabla { display: table; width: auto; }
+.tabla div { padding-top: 3px; }
+
+.col1 { display: table-cell; width: 300px; vertical-align: top; }
+.col2 { display: table-cell; width: 60%; }
+.derecha { text-align: right; margin-right: 0px; }
+
+.col2 input[type="checkbox"] { margin-left: 15px; margin-bottom: 0px !important; }
+.col2 .hasDatepicker { margin-bottom: 0px !important; }
+.col2 textarea { width: 250px; margin-bottom: 0px !important; resize: none; }
+.col2 select { width: 250px; margin-bottom: 0px !important; }
+.col2 input { width: 250px; margin-bottom: 0px !important; }
+.col2 input[type="radio"] { width: 1px !important; }
+
+.ui-widget *, .ui-widget input, .ui-widget select, .ui-widget button {
+    font-family: 'Helvetica Neue Light', 'Open Sans', Helvetica;
+    /*font-size: 14px;
+    font-weight: 300 !important;*/
+}
+input.error, select.error, .error {
+    border: 1px solid #ff9999 !important;
+    background: #ffeeee !important;
+}
+
+label.error {
+    float: left;
+    /*margin-left: 100px;*/
+    font-size: .8em;
+    color: #ff6666;
+}
+
+.tituloListado {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #EB409E;
+}
+
+.radioButton {
+    border: none !important;
+    background: none !important;
+    color: #2779aa !important;
+    font-weight: normal !important;
+    box-shadow: none !important;
+}
+
+.recuadro {
+    border: 2px solid #c2c5c7; 
+    border-radius: 10px; 
+    padding: 10px; 
+    display:inline-block;
+    margin-top: 10px;
+    width: -webkit-fill-available;
+}
+
+#divCajaChica .spLegenda {
+    font-style: italic;
+    font-weight: bold;
+}
+#divCajaChica .spDescripcion {
+    font-size: medium;
+    font-weight: bold;
+}
+#divCajaChica .spMensajeChico {
+    font-style: italic;
+    font-size: smaller;
+    font-weight: bold;
+    color: red;
+}
+#divCajaChica .divBoton {
+    text-align: right; 
+    margin-right: 10px;
+}
