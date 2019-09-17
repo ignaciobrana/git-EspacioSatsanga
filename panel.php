@@ -9,8 +9,6 @@ include_once './class/globalclass/execfunction.php';
         <script src="./javascript/common.js"></script>
     </header>
     <body>
-        <div>
-            <a href="#" onclick="executePHP('session_destroy');">Cerrar sesión</a>
-        </div>
+        <a href="#" onclick="executePHP('session_destroy');">Cerrar sesión</a>
     </body>
 </html>
