@@ -139,10 +139,11 @@ $(function() {
         $('#tObservaciones').val(recibo._observaciones);
         $('#tValor').val(recibo._valor);
         $('#tPromocion').val(recibo._promocion);
+        $('#cbProximoMes')[0].checked = (recibo._proximoMes == "1");
         
         //Limpiamos el control por si queda con información antigua
         $('#sClases').val(null).trigger('change');
-                
+
         if(dialogType === 'Nuevo') {
             oDate = new Date();
             $('#dFecha').val(oDate.getDate() + "/" + (oDate.getMonth() + 1) + "/" + oDate.getFullYear());
@@ -190,6 +191,7 @@ $(function() {
         var valor = $('#tValor').val();
         var promocion = $('#tPromocion').val();
         var idFactura = $('#sFactura').val();
+        var proximoMes = ($('#cbProximoMes')[0].checked ? 1 : 0);
         
         //Validamos que no exista un recibo con el mismo numero
         if(existsNumeroRecibo(recibo._idRecibo, numeroRecibo)){
@@ -226,7 +228,8 @@ $(function() {
                 observaciones: observaciones,
                 valor: valor,
                 promocion: promocion,
-                idFactura: idFactura
+                idFactura: idFactura,
+                proximoMes: proximoMes
             }
         }).done(
             function (MessageResponse) {

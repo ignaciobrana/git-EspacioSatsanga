@@ -13,6 +13,7 @@ class Recibo {
     public $_promocion;
     public $_factura;
     public $_nombreEstudiante; //Utilizamos esta varialbe para que se pueda generar el ordenamiento automatico en jsGrid
+    public $_proximoMes;
     
     public function __construct(){
         $this->_idRecibo = 0;
@@ -26,6 +27,7 @@ class Recibo {
         $this->_promocion = '';
         $this->_factura = new \Model\Factura();
         $this->_nombreEstudiante = '';
+        $this->_proximoMes = 0;
     }
     
     public function get_IdRecibo(){
@@ -71,6 +73,10 @@ class Recibo {
     public function get_nombreEstudiante(){
         return $this->_nombreEstudiante;
     }
+    
+    public function get_proximoMes(){
+        return $this->_proximoMes;
+    }
 
     public function set_IdRecibo($idRecibo){
         $this->_idRecibo = $idRecibo;
@@ -114,6 +120,10 @@ class Recibo {
     
     public function set_nombreEstudiante($nombreEstudiante){
         $this->_nombreEstudiante = $nombreEstudiante;
+    }
+    
+    public function set_proximoMes($proximoMes){
+        $this->_proximoMes = $proximoMes;
     }
 
 }

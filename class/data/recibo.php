@@ -40,6 +40,7 @@ class Recibo {
                 $recibo->set_Observaciones($data[$i]['observaciones']);
                 $recibo->set_Promocion($data[$i]['promocion']);
                 $recibo->set_nombreEstudiante($data[$i]['est_NombreApellido']);
+                $recibo->set_proximoMes($data[$i]['proximoMes']);
                 
                 if ($data[$i]['idEstudiante'] != null) {
                     $estudiante = new \Model\Estudiante();
@@ -72,10 +73,10 @@ class Recibo {
         }
     }
     
-    public function setRecibo($idRecibo, $numeroRecibo, $fecha, $idEstudiante, $vecesPorSemana, $idClases, $observaciones, $valor, $promocion, $idFactura) {
+    public function setRecibo($idRecibo, $numeroRecibo, $fecha, $idEstudiante, $vecesPorSemana, $idClases, $observaciones, $valor, $promocion, $idFactura, $proximoMes) {
         try {
-            $sql = self::getInsertUpdateQuery($idRecibo, $numeroRecibo, $fecha, $idEstudiante, $vecesPorSemana, 
-                    $observaciones, $valor, $idClases, $promocion, $idFactura);
+            $sql = self::getInsertUpdateQuery($idRecibo, $numeroRecibo, $fecha, $idEstudiante, $vecesPorSemana,
+                    $observaciones, $valor, $idClases, $promocion, $idFactura, $proximoMes);
             $query = \GlobalClass\Database::instance()->prepare($sql);
             $query->execute();
             return $query->rowCount(); //retorna 1 si sale todo bien
@@ -107,14 +108,14 @@ class Recibo {
         return $sql;
     }
     
-    function getInsertUpdateQuery($idRecibo, $numeroRecibo, $fecha, $idEstudiante, $vecesPorSemana, $observaciones, $valor, $idClases, $promocion, $idFactura) {
+    function getInsertUpdateQuery($idRecibo, $numeroRecibo, $fecha, $idEstudiante, $vecesPorSemana, $observaciones, $valor, $idClases, $promocion, $idFactura, $proximoMes) {
         list($f_día, $f_mes, $f_año) = explode('/', $fecha);
         //$ids = implode(",", $vIdClases);
         $queryInsertUpdate = 'call setRecibo(' . $idRecibo . ', ' . $numeroRecibo . ', ' .
                 '\'' . ($f_año . '-' . $f_mes . '-' . $f_día) . '\', ' .
                 ($idEstudiante != null ? $idEstudiante : 'null') . ', ' . $vecesPorSemana . ', \'' . $observaciones . '\', ' . 
                 $valor . ', \'' . $idClases . '\', \'' . $promocion . '\', ' . 
-                ($idFactura != null ? $idFactura : 'null') . ');';
+                ($idFactura != null ? $idFactura : 'null') . ', ' . $proximoMes . ');';
         return $queryInsertUpdate;
     }
     

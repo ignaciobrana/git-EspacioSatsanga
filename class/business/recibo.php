@@ -40,10 +40,10 @@ class Recibo {
         }
     }
     
-    public function setRecibo($idRecibo, $numeroRecibo, $fecha, $idEstudiante, $vecesPorSemana, $idClases, $observaciones, $valor, $promocion, $idFactura) {
+    public function setRecibo($idRecibo, $numeroRecibo, $fecha, $idEstudiante, $vecesPorSemana, $idClases, $observaciones, $valor, $promocion, $idFactura, $proximoMes) {
         try{
             $recibos = \Data\Recibo::instance()->setRecibo($idRecibo, $numeroRecibo, $fecha, $idEstudiante, 
-                        $vecesPorSemana, $idClases, $observaciones, $valor, $promocion, $idFactura);
+                        $vecesPorSemana, $idClases, $observaciones, $valor, $promocion, $idFactura, $proximoMes);
             return $recibos;
         } catch(\Exception $ex) {
             throw new \Exception('Business\Recibo\setRecibo: ' . $ex->getMessage());

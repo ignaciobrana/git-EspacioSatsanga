@@ -108,6 +108,12 @@
                                             </div>
                                         </div>
                                         <div>
+                                            <div class="col1"><label for="proximoMes">Valido para el próximo mes:</label></div>
+                                            <div class="col2">
+                                                <input id="cbProximoMes" name="cbProximoMes" type="checkbox" style="text-align: left; width: 13px; margin-left: 0px;margin-right: 0px;margin-top: 10px;" />
+                                            </div>
+                                        </div>
+                                        <div>
                                             <div class="col1"><label for="observaciones">Observaciones:</label></div>
                                             <div class="col2"><textarea id="tObservaciones" name="tObservaciones"></textarea></div>
                                         </div>

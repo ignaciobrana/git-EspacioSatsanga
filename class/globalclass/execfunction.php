@@ -473,9 +473,10 @@ function setRecibo() {
         $valor = $_REQUEST['valor'];
         $promocion = $_REQUEST['promocion'];
         $idFactura = $_REQUEST['idFactura'];
+        $proximoMes = $_REQUEST['proximoMes'];
         
         $returnValue = Recibo::instance()->setRecibo($idRecibo, $numeroRecibo, $fecha, $idEstudiante, 
-                        $vecesPorSemana, $idClases, $observaciones, $valor, $promocion, $idFactura);
+                        $vecesPorSemana, $idClases, $observaciones, $valor, $promocion, $idFactura, $proximoMes);
         
         $json_returnValue = json_encode($idClases);
         echo $json_returnValue;
