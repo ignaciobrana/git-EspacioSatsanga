@@ -267,10 +267,11 @@ $(function() {
             },
             controller: db,
             fields: [
-                { name: '_numeroRecibo', type: 'number', width: 80, title:'N°Recibo', sorting: true, align: 'center' },
+                { name: '_numeroRecibo', type: 'number', width: 40, title:'N°Recibo', sorting: true, align: 'center' },
                 { name: '_nombreEstudiante', type: 'text', width: 80, title:'Estudiante' },
-                { name: '_valor', type: 'number', width: 80, title:'Valor', sorting: true, align: 'center' },
-                { name: '_promocion', type: 'text', title:'Promo' },
+                { name: '_valor', type: 'number', width: 50, title:'Valor', sorting: true, align: 'center' },
+                { name: '_promocion', type: 'text', width: 60, title:'Promo' },
+                { name: '_observaciones', type: 'text', title:'Observaciones' },
                 { name: '_fecha', type: 'date', width: 80, title: 'Fecha', sorting: true, align: 'center' },
                 {
                     type: 'control',
