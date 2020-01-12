@@ -1,5 +1,5 @@
 (function() { var db = {}; window.db = db; })();
-
+var saving = false;
 $(function() {
 
     //Configuramos el lenguaje de datepicker
@@ -107,6 +107,10 @@ $(function() {
     }
 
     var saveEstudiante = function() {
+
+        if (saving) return;
+
+        saving = true;
         showLoading();
         var idEstudiante = '0';
         var nombreApellido = $('#tNombreApellido').val();
@@ -121,7 +125,7 @@ $(function() {
         var oDate = new Date();
         var fechaAlta = oDate.getDate() + '/' + (oDate.getMonth() + 1) + '/' + oDate.getFullYear();
         var fechaBaja = '';
-        
+
         $.ajax({
             url: './class/globalclass/execfunction.php',
             type : 'GET',
@@ -154,7 +158,9 @@ $(function() {
                 alert(jqXHR.responseText);
                 hideLoading();
             }
-        );
+        ).always(() => {
+            saving = false;
+        });
     };
 
     function cleanForm() {
