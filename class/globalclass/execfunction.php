@@ -376,6 +376,15 @@ if(isset($_REQUEST['condicion'])) {
             } catch (\Exception $ex) {
                 throw new \Exception('execfunction/getEstudiantesByIdClase(): ' . $ex->getMessage());
             }
+        case 'getBalanceCajaGrande':
+            try {
+                $arrBalance = getBalanceCajaGrande();
+                $json_Balance = json_encode($arrBalance);
+                echo $json_Balance;
+                exit();
+            } catch (\Exception $ex) {
+                throw new \Exception('execfunction/getBalanceCajaGrande(): ' . $ex->getMessage());
+            }
         default :
             throw new \Exception('execfunction: Se está enviando un nombre de función incorrecto');
     }
@@ -783,4 +792,12 @@ function getEstudiantesByIdClase() {
         
     $arrEstudiantes = Estudiante::instance()->getEstudiantesByIdClase($idClase);
     return $arrEstudiantes;
+}
+
+function getBalanceCajaGrande() {
+    $año = $_REQUEST['año'];
+    $mes = $_REQUEST['mes'];
+        
+    $arrBalance = CajaGrande::instance()->getBalanceCajaGrande($año, $mes);
+    return $arrBalance;
 }

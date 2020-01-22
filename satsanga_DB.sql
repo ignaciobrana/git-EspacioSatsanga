@@ -2612,10 +2612,6 @@ DELIMITER //
 CREATE PROCEDURE `setReciboClase`(
 	IN `_idRecibo` BIGINT,
 	IN `_idsClases` VARCHAR(100)
-
-
-
-
 )
 BEGIN
 
@@ -2673,6 +2669,40 @@ BEGIN
 	-- select @queryInsertUpdate;
 END//
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE `getBalanceCajaGrande`(
+	IN `_año` INT,
+	IN `_mes` INT
+)
+BEGIN
+   
+set @consulta = 'SELECT YEAR(cg.fecha) año, MONTH(cg.fecha) mes, ';
+set @consulta = CONCAT(@consulta, '(SELECT SUM(cg1.valor) FROM cajaGrande cg1 ');
+set @consulta = CONCAT(@consulta, 'WHERE cg1.idTipoEgresoFijo IS NULL AND cg1.idMovimientoCajaChica IS NOT NULL AND ');
+set @consulta = CONCAT(@consulta, 'YEAR(cg1.fecha) = YEAR(cg.fecha) AND MONTH(cg1.fecha) = MONTH(cg.fecha)) AS ingresos, ');
+set @consulta = CONCAT(@consulta, '(SELECT SUM(cg2.valor) FROM cajaGrande cg2 ');
+set @consulta = CONCAT(@consulta, 'WHERE cg2.idMovimientoCajaChica IS NULL AND cg2.idTipoEgresoFijo IS NOT NULL AND ');
+set @consulta = CONCAT(@consulta, 'YEAR(cg2.fecha) = YEAR(cg.fecha) AND MONTH(cg2.fecha) = MONTH(cg.fecha)) AS egresos, ');
+set @consulta = CONCAT(@consulta, 'SUM(cg.valor) AS utilidadMes ');
+set @consulta = CONCAT(@consulta, 'FROM cajaGrande cg ');
+
+IF (_año IS NOT NULL AND _año <> 0 AND _mes IS NOT NULL AND _mes <> 0) THEN
+	set @consulta = CONCAT(@consulta, 'WHERE YEAR(cg.fecha) = ', _año, ' and MONTH(cg.fecha) = ', _mes, ' ');
+END IF;
+
+set @consulta = CONCAT(@consulta, 'GROUP BY YEAR(cg.fecha), MONTH(cg.fecha)');
+
+-- preparamos el objeto Statement a partir de nuestra variable
+PREPARE smpt FROM @consulta;
+-- ejecutamos el Statement
+EXECUTE smpt;
+-- liberamos la memoria
+DEALLOCATE PREPARE smpt;
+
+END//
+DELIMITER ;
+
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

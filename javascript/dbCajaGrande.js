@@ -273,6 +273,9 @@ $(function() {
                     "<td class=\"jsgrid-cell jsgrid-align-center\"><strong>" + total.Sum + "</strong></td>" +
                     "<td class=\"jsgrid-cell jsgrid-align-right\"><strong></strong></td></tr>"
                 );
+
+                //mostramos información de los datos Actuales de la CajaGrande
+                showInfoEstadoActualCaja(total.Sum);
             }
         });
     }
@@ -334,6 +337,38 @@ $(function() {
             }
         );
 
+    }
+
+    function showInfoEstadoActualCaja(totalCaja) {
+        var año = new Date().getFullYear();
+        var mes = new Date().getMonth() + 1;
+        $.ajax({
+            url: './class/globalclass/execfunction.php',
+            type : 'GET',
+            contentType : 'application/json',
+            dataType : 'json',
+            data: { 
+                condicion: 'getBalanceCajaGrande',
+                año: año,
+                mes: mes
+            }
+        }).done(
+            function(jsonBalance) {
+                if (jsonBalance.length == 0) {
+                    $("#spIngresosMes").text("$ 0");
+                    $("#spEgresosMes").text("$ 0");
+                } else {
+                    $("#spIngresosMes").text("$ " + jsonBalance[0]["ingresos"]);
+                    $("#spEgresosMes").text("$ " + jsonBalance[0]["egresos"]);
+                }
+                $("#spValorTotal").text("$ " + totalCaja);
+            }
+        ).fail(
+            function( jqXHR, textStatus, errorThrown ) {
+                alert(errorThrown);
+                alert(jqXHR.responseText);
+            }
+        );
     }
     
 });

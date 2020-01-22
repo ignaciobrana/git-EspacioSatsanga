@@ -63,6 +63,21 @@
                         <div class="sixteen columns">
                             <p class="tituloListado">Caja Grande</p>
                             
+                            <div id="divCajaChica" class="recuadro" style="margin-bottom:5px;" >
+                                <div class="sixteen columns">
+                                    <div id="divDatosCG">
+                                        <div>
+                                            <span class="spLegenda">Ingresos del Mes: </span>
+                                            <span id="spIngresosMes" class="spDescripcion">150000</span><br>
+                                            <span class="spLegenda">Egresos del Mes: </span> 
+                                            <span id="spEgresosMes" class="spDescripcion">90000</span><br>
+                                            <span class="spLegenda">Valor Total: </span>
+                                            <span id="spValorTotal" class="spDescripcion">123</span><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div id="jsGrid"></div>
 
                             <div id="detailsDialog">

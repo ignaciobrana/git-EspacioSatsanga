@@ -99,5 +99,31 @@ class CajaGrande {
                 ($f_fechaHasta != null ? '\'' . $f_fechaHasta . '\'' : 'null') . ', \'' . $f_observacion . '\')';
         return $sql;
     }
+
+    public function getBalanceCajaGrande($año, $mes) {
+        try{
+            $arr_Balance = array();
+            
+            $sql = 'call getBalanceCajaGrande(' . 
+                    ($año == "" || $año == null ? 0 : $año) . ', ' . 
+                    ($mes == "" || $mes == null ? 0 : $mes) .');';
+            
+            $query = \GlobalClass\Database::instance()->prepare($sql);
+            $query->execute();
+            $data = $query->fetchAll();
+            
+            for ($i = 0; $i < $query->rowCount(); $i++){
+                $arr_Balance[$i] = array();
+                $arr_Balance[$i]['año'] = $data[$i]['año'];
+                $arr_Balance[$i]['mes'] = $data[$i]['mes'];
+                $arr_Balance[$i]['ingresos'] = $data[$i]['ingresos'];
+                $arr_Balance[$i]['egresos'] = $data[$i]['egresos'];
+                $arr_Balance[$i]['utilidadMes'] = $data[$i]['utilidadMes'];
+            }
+            return $arr_Balance;
+        } catch(Exception $ex) {
+            throw new Exception('Data\CajaGrande\getBalanceCajaGrande: ' . $ex->getMessage());
+        }
+    }
     
 }

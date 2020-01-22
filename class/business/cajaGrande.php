@@ -47,5 +47,14 @@ class CajaGrande {
             throw new Exception('Business\CajaGrande: ' . $ex->getMessage());
         }
     }
+
+    public function getBalanceCajaGrande($año, $mes) {
+        try{
+            $returnValue = \Data\CajaGrande::instance()->getBalanceCajaGrande($año, $mes);
+            return $returnValue;
+        } catch(Exception $ex) {
+            throw new Exception('Business\CajaGrande: ' . $ex->getMessage());
+        }
+    }
     
 }
