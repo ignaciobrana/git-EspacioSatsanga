@@ -45,21 +45,8 @@
 }());
 
 $(function() {
-    db.meses = [ 
-        {_mes: "0", _descripcion: ""},
-        {_mes: "1", _descripcion: "Enero"},
-        {_mes: "2", _descripcion: "Febrero"}, 
-        {_mes: "3", _descripcion: "Marzo"},
-        {_mes: "4", _descripcion: "Abril"},
-        {_mes: "5", _descripcion: "Mayo"},
-        {_mes: "6", _descripcion: "Junio"},
-        {_mes: "7", _descripcion: "Julio"},
-        {_mes: "8", _descripcion: "Agosto"},
-        {_mes: "9", _descripcion: "Septiembre"},
-        {_mes: "10", _descripcion: "Octubre"},
-        {_mes: "11", _descripcion: "Noviembre"},
-        {_mes: "12", _descripcion: "Diciembre"}
-    ];
+    db.meses = get_array_meses(); //common.js
+
     //cargamos los meses en select
     $.each(db.meses, function (index, data) {
         $("#sMes").append("<option value='" + data._mes + "'>" + data._descripcion + "</option>");

@@ -53,17 +53,25 @@
                     <li class="menu-item">
                         <a href="#">Cajas</a>
                         <div style="display: none;">
-                            <ul class="sub-menu">
+                            <ul>
                                 <li class="menu-item has-children">
                                     <a href="#"><span>Caja chica</span></a>
                                     <div class="subsub_menu">
-                                        <ul class="sub-menu">
-                                            <li><a href="./caja-actual.php"><span>actual</span></a></li>
-                                            <li><a href="./historialcc.php"><span>historial</span></a></li>
+                                        <ul>
+                                            <li><a href="./caja-actual.php"><span>Actual</span></a></li>
+                                            <li><a href="./historialcc.php"><span>Historial</span></a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="./cajagrande.php"><span>Caja grande</span></a></li>
+                                <li class="menu-item has-children">
+                                    <a href="#"><span>Caja Grande</span></a>
+                                    <div class="subsub_menu" style="display:none;">
+                                        <ul>
+                                            <li><a href="./cajagrande.php"><span>Movimientos</span></a></li>
+                                            <li><a href="./balancescajagrande.php"><span>historial balances</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </li>

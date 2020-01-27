@@ -172,7 +172,11 @@ function getDayAndHour(fecha){
 
 $(function () {
     $('.menu-item').hover(
-        function () { $(this).find('div').css('display','block'); },
+        function () { 
+            $(this).find('div').css('display','block'); 
+            if ($(this).prop('className') != 'menu-item has-children')
+                $(this).find('div.subsub_menu').css('display','none');
+        },
         function () { $(this).find('div').css('display','none'); }
     );
 });
@@ -253,4 +257,23 @@ function formatearfecha(fecha) {
             fecha = fecha.substr(0, 2) + "/";
     }
     return (fecha); 
+}
+
+function get_array_meses() {
+    let meses = [ 
+        {_mes: "0", _descripcion: ""},
+        {_mes: "1", _descripcion: "Enero"},
+        {_mes: "2", _descripcion: "Febrero"}, 
+        {_mes: "3", _descripcion: "Marzo"},
+        {_mes: "4", _descripcion: "Abril"},
+        {_mes: "5", _descripcion: "Mayo"},
+        {_mes: "6", _descripcion: "Junio"},
+        {_mes: "7", _descripcion: "Julio"},
+        {_mes: "8", _descripcion: "Agosto"},
+        {_mes: "9", _descripcion: "Septiembre"},
+        {_mes: "10", _descripcion: "Octubre"},
+        {_mes: "11", _descripcion: "Noviembre"},
+        {_mes: "12", _descripcion: "Diciembre"}
+    ];
+    return meses;
 }

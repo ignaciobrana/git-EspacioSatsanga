@@ -2677,6 +2677,7 @@ CREATE PROCEDURE `getBalanceCajaGrande`(
 )
 BEGIN
    
+SET @_where = '';
 set @consulta = 'SELECT YEAR(cg.fecha) año, MONTH(cg.fecha) mes, ';
 set @consulta = CONCAT(@consulta, '(SELECT SUM(cg1.valor) FROM cajaGrande cg1 ');
 set @consulta = CONCAT(@consulta, 'WHERE cg1.idTipoEgresoFijo IS NULL AND cg1.idMovimientoCajaChica IS NOT NULL AND ');
@@ -2687,11 +2688,22 @@ set @consulta = CONCAT(@consulta, 'YEAR(cg2.fecha) = YEAR(cg.fecha) AND MONTH(cg
 set @consulta = CONCAT(@consulta, 'SUM(cg.valor) AS utilidadMes ');
 set @consulta = CONCAT(@consulta, 'FROM cajaGrande cg ');
 
-IF (_año IS NOT NULL AND _año <> 0 AND _mes IS NOT NULL AND _mes <> 0) THEN
-	set @consulta = CONCAT(@consulta, 'WHERE YEAR(cg.fecha) = ', _año, ' and MONTH(cg.fecha) = ', _mes, ' ');
+IF (_año IS NOT NULL AND _año <> 0) THEN
+	set @_where = CONCAT(@_where, 'YEAR(cg.fecha) = ', _año);
 END IF;
 
-set @consulta = CONCAT(@consulta, 'GROUP BY YEAR(cg.fecha), MONTH(cg.fecha)');
+IF (_mes IS NOT NULL AND _mes <> 0) THEN
+	IF (@_where <> '') THEN
+		set @_where = CONCAT(@_where, ' and ');
+	END iF;
+	set @_where = CONCAT(@_where, 'MONTH(cg.fecha) = ', _mes);
+END IF;
+
+IF (@_where <> '') THEN
+	set @consulta = CONCAT(@consulta, 'WHERE ', @_where, ' ');
+END IF;
+
+set @consulta = CONCAT(@consulta, 'GROUP BY YEAR(cg.fecha), MONTH(cg.fecha) ORDER BY YEAR(cg.fecha) desc, MONTH(cg.fecha) desc');
 
 -- preparamos el objeto Statement a partir de nuestra variable
 PREPARE smpt FROM @consulta;
