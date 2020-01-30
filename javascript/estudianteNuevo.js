@@ -107,11 +107,13 @@ $(function() {
     }
 
     var saveEstudiante = function() {
-
+debugger;
         if (saving) return;
 
         saving = true;
+        $("#bGuardar").prop('disabled', true);
         showLoading();
+
         var idEstudiante = '0';
         var nombreApellido = $('#tNombreApellido').val();
         var fechaNacimiento = $('#dFechaNacimiento').val();
@@ -160,12 +162,13 @@ $(function() {
             }
         ).always(() => {
             saving = false;
+            $("#bGuardar").prop('disabled', false);
         });
     };
 
     function cleanForm() {
         $('#tNombreApellido').val('');
-         $('#dFechaNacimiento').val('');
+        $('#dFechaNacimiento').val('');
         $('#sGenero').val('-1').select2();
         $('#sComoConocio').val('-1').select2();
         $('#tEmail').val('');
