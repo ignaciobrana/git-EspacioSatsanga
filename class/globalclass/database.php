@@ -100,6 +100,11 @@ class Database
         return self::$_instance;
     }
 
+    public function getConnection()
+    {
+        return $this->_connection;
+    }
+
     /**
      * [__clone Evita que el objeto se pueda clonar]
      * @return [type] [message]
