@@ -1388,25 +1388,19 @@ DELIMITER ;
 -- Volcando estructura para procedimiento satsanga_dev.getEstudiantesByIdClase
 DELIMITER //
 CREATE PROCEDURE `getEstudiantesByIdClase`(
-	IN `_idClase` INT
-
+	IN `_idClase` INT,
+	IN `_año` INT,
+	IN `_mes` INT
 )
 BEGIN
 
-	/*SELECT e.*
+	SELECT distinct e.*
 	FROM reciboClase rc
 	INNER JOIN recibo r ON r.idRecibo = rc.idRecibo
 	INNER JOIN estudiante e ON e.idEstudiante = r.idEstudiante
 	WHERE
-		rc.idClase = _idClase AND month(r.fecha) = month(CURRENT_DATE()) AND year(r.fecha) = year(CURRENT_DATE());*/
-		
-	SELECT e.*
-	FROM reciboClase rc
-	INNER JOIN recibo r ON r.idRecibo = rc.idRecibo
-	INNER JOIN estudiante e ON e.idEstudiante = r.idEstudiante
-	WHERE
-		rc.idClase = _idClase AND year(r.fecha) = year(CURRENT_DATE()) AND
-		(month(r.fecha) = month(CURRENT_DATE()) OR (month(r.fecha) = month(CURRENT_DATE())-1 AND r.proximoMes = 1));
+		rc.idClase = _idClase AND year(r.fecha) = _año AND
+		(month(r.fecha) = _mes OR (month(r.fecha) = (_mes -1) AND r.proximoMes = 1));
 
 END//
 DELIMITER ;

@@ -278,6 +278,14 @@ if(isset($_REQUEST['condicion'])) {
             } catch (\Exception $ex) {
                 throw new \Exception('execfunction/downloadEstudiantesMails(): ' . $ex->getMessage());
             }
+        case 'downloadEstudiantesDeClase':
+            try {
+                downloadEstudiantesDeClase();
+                echo '1';
+                exit();
+            } catch (\Exception $ex) {
+                throw new \Exception('execfunction/downloadEstudiantesDeClase(): ' . $ex->getMessage());
+            }
         case 'getEmpleadosForDownloadComprobantes':
             try {
                 $arrIdsEmpleados = getEmpleadosForDownloadComprobantes();
@@ -656,6 +664,16 @@ function downloadEstudiantesMails() {
     }
 }
 
+function downloadEstudiantesDeClase() {
+    $nombre_archivo = "../../temp/estudiantes_de_clase.csv";
+    $estudiantes = getEstudiantes_para_descargar();
+    if($archivo = fopen($nombre_archivo, "w"))
+    {
+        fwrite($archivo, $estudiantes);
+        fclose($archivo);
+    }
+}
+
 function getMails() {
     $mails = '';
     $i = 0;
@@ -684,6 +702,21 @@ function getMails() {
     }
     
     return $mails;
+}
+
+function getEstudiantes_para_descargar() {
+    $listado = "";
+    $idClase = $_REQUEST['idClase'];
+    $mes = $_REQUEST['mes'];
+    $año = $_REQUEST['año'];
+        
+    $arrEstudiantes = Estudiante::instance()->getEstudiantesByIdClase($idClase, $mes, $año);
+    $listado = 'Nombre y Apellido; Celular; Telefono; Email';
+    foreach ($arrEstudiantes as $est) {
+        $listado .= "\r\n" . $est->get_NombreApellido() . '; ' . $est->get_Celular() . '; ' . $est->get_Telefono() . '; ' . $est->get_Email();
+    }
+    
+    return $listado;
 }
 
 function getEmpleadosForDownloadComprobantes() {
@@ -808,8 +841,10 @@ function setCajaGrande() {
 
 function getEstudiantesByIdClase() {
     $idClase = $_REQUEST['idClase'];
+    $mes = $_REQUEST['mes'];
+    $año = $_REQUEST['año'];
         
-    $arrEstudiantes = Estudiante::instance()->getEstudiantesByIdClase($idClase);
+    $arrEstudiantes = Estudiante::instance()->getEstudiantesByIdClase($idClase, $mes, $año);
     return $arrEstudiantes;
 }
 

@@ -39,6 +39,10 @@
         loadData: 
         function(filter) {
             var def = $.Deferred();
+
+            var oDate = new Date(Date.now());
+            var mes = $("#sMes_filtro").val() != null ? $("#sMes_filtro").val() : (oDate.getMonth()+1);
+            var año = $("#sAño_filtro").val() != null ? $("#sAño_filtro").val() : oDate.getFullYear();
             $.ajax({
                 url: './class/globalclass/execfunction.php',
                 type : 'GET',
@@ -46,7 +50,9 @@
                 dataType : 'json',
                 data: {
                     condicion: 'getEstudiantesByIdClase',
-                    idClase : idClase
+                    idClase : idClase,
+                    mes: mes,
+                    año: año
                 }
             }).done(
                 function (jsonEstudiantesList) {
@@ -274,9 +280,20 @@ var saveClase = function(clase, isNew) {
 
 var showEstudiantes = function(value, clase) {
     idClase = clase._idClase;
-    $("#jsEstudiantes").jsGrid("loadData");
-    showModalForm("#divEstudiantes");
+    let oDate = new Date(Date.now());
+    $("#sMes_filtro").val(oDate.getMonth()+1).select2();
+    $("#sAño_filtro").val(oDate.getFullYear()).select2();
+    
+    var title = "Estudiantes de la clase: " + clase._dia._nombre + " " + clase._horaInicio + " a " + clase._horaFin;
+    //$("#divEstudiantes").attr("title", title);
+
+    buscarEstudiantes();
+    showModalForm("#divEstudiantes", title);
 };
+
+function buscarEstudiantes() {
+    $("#jsEstudiantes").jsGrid("loadData");
+}
 
 function configJSGrid() {
     //Configuramos el lenguaje de la grid
@@ -354,7 +371,20 @@ function configJSGrid() {
             { name: '_nombreApellido', type: 'text', width: 80, title: 'Nombre' },
             { name: '_celular', type: 'text', width: 80, title: 'Celular', align:'center' },
             { name: '_telefono', type: 'text', width: 80, title: 'Teléfono', align:'center' },
-            { name: '_email', type: 'text', width: 80, title: 'Email', align:'left' }
+            { name: '_email', type: 'text', width: 80, title: 'Email', align:'left' },
+            { 
+                type: 'control',
+                modeSwitchButton: false,
+                editButton: false,
+                deleteButton: false,
+                headerTemplate: function() {
+                    return $('<button>').attr('type', 'button')
+                            .attr('title', 'Descargar listado')
+                            .button({icons: {primary: null}})
+                            .addClass("buttonDownloadFile")
+                            .on('click', function () { downloadList(); });
+                }
+            }
         ]
     });
 }
@@ -389,6 +419,18 @@ function configFormControls() {
         if (index != 0)
             $("#sDia").append("<option value='" + data._idDia + "'>" + data._nombre + "</option>");
     });
+
+    db.meses = get_array_meses(); //common.js
+    //cargamos los meses en select
+    $.each(db.meses, function (index, data) {
+        $("#sMes_filtro").append("<option value='" + data._mes + "'>" + data._descripcion + "</option>");
+    });
+
+    //cargamos años en select... el actual y el anterior
+    var año = (new Date).getFullYear();
+    for (let i = 2018; i <= año; i++) {
+        $("#sAño_filtro").append("<option value='" + i + "'>" + i + "</option>");
+    }
 
     //Cargamos los Estudiantes que se encuentran Activos para cargar en el select del form
     $.ajax({
@@ -453,4 +495,37 @@ function existeInterseccion(hi1, hf1, hi2, hf2) {
     var ff2 = new Date('01/01/1990 ' + hf2);
     
     return ((fi1 < fi2 && ff2 < ff1) || (fi2 < fi1 && ff1 < ff2) || (fi1 < fi2 && fi2 < ff1) || (fi2 < fi1 && fi1 < ff2));
+}
+
+function downloadList() {
+    showLoading();
+    
+    var mes = $("#sMes_filtro").val();
+    var año = $("#sAño_filtro").val();
+    $.ajax({
+        url: './class/globalclass/execfunction.php',
+        type : 'GET',
+        contentType : 'application/json',
+        dataType : 'json',
+        data: {
+            condicion: 'downloadEstudiantesDeClase',
+            idClase: idClase,
+            año: año,
+            mes: mes
+        }
+    }).done(
+        function (MessageResponse) {
+            if (MessageResponse === 1)
+                downloadFile('estudiantes_de_clase.csv');
+            else
+                alert('Se produjo un error armando el archivo.');
+            hideLoading();
+        }
+    ).fail(
+        function( jqXHR, textStatus, errorThrown ) {
+            alert(errorThrown);
+            alert(jqXHR.responseText);
+            hideLoading();
+        }
+    );
 }

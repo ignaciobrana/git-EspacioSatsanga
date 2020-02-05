@@ -283,7 +283,7 @@ $(function() {
         }).done(
             function (MessageResponse) {
                 if (MessageResponse === 1)
-                    downloadFile();
+                    downloadFile('estudiantes_mails.txt');
                 else
                     alert('Se produjo un error armando el archivo.');
                 hideLoading();
@@ -420,25 +420,6 @@ $(function() {
                 alert(jqXHR.responseText);
             }
         );
-    }
-    
-    function downloadFile() {
-        //Usaremos un link para iniciar la descarga
-        var save = document.createElement('a');
-        save.href = './temp/estudiantes_mails.txt';
-        save.target = '_blank';
-        //Truco: así le damos el nombre al archivo 
-        save.download = 'estudiantes_mails.txt';
-        var clicEvent = new MouseEvent('click', {
-          'view': window,
-          'bubbles': true,
-          'cancelable': true
-        });
-        //Simulamos un clic del usuario
-        //no es necesario agregar el link al DOM.
-        save.dispatchEvent(clicEvent);
-        //Y liberamos recursos...
-        (window.URL || window.webkitURL).revokeObjectURL(save.href);
     }
     
 });

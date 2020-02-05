@@ -41,9 +41,9 @@ class Estudiante {
         }
     }
 
-    public function getEstudiantesByIdClase($idClase) {
+    public function getEstudiantesByIdClase($idClase, $mes, $año) {
         try{
-            $estudiantes = \Data\Estudiante::instance()->getEstudiantesByIdClase($idClase);
+            $estudiantes = \Data\Estudiante::instance()->getEstudiantesByIdClase($idClase, $mes, $año);
             return $estudiantes;
         } catch(Exception $ex) {
             throw new Exception('Business\Estudiante: ' . $ex->getMessage());

@@ -40,16 +40,29 @@ function showModalMessage(divID) {
     });
 }
 
-function showModalForm(divID) {
+function showModalForm(divID, title = '') {
     $(function() {
-        $(divID).dialog({
-            modal: true,
-            width: 700,
-            height: 500,
-            buttons: {
-                Ok: function() { $(this).dialog("close"); }
-            }
-        });
+        if (title == '') {
+            $(divID).dialog({
+                modal: true,
+                width: 700,
+                height: 500,
+                buttons: {
+                    Ok: function() { $(this).dialog("close"); }
+                }
+            });
+        } else {
+            $(divID).dialog({
+                modal: true,
+                width: 700,
+                height: 500,
+                title: title,
+                buttons: {
+                    Ok: function() { $(this).dialog("close"); }
+                }
+            });
+        }
+
     });
 }
 
@@ -276,4 +289,23 @@ function get_array_meses() {
         {_mes: "12", _descripcion: "Diciembre"}
     ];
     return meses;
+}
+
+function downloadFile(file) {
+    //Usaremos un link para iniciar la descarga
+    var save = document.createElement('a');
+    save.href = './temp/' + file;
+    save.target = '_blank';
+    //Truco: así le damos el nombre al archivo 
+    save.download = file;
+    var clicEvent = new MouseEvent('click', {
+      'view': window,
+      'bubbles': true,
+      'cancelable': true
+    });
+    //Simulamos un clic del usuario
+    //no es necesario agregar el link al DOM.
+    save.dispatchEvent(clicEvent);
+    //Y liberamos recursos...
+    (window.URL || window.webkitURL).revokeObjectURL(save.href);
 }

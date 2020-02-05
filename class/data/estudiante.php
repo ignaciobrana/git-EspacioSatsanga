@@ -71,7 +71,7 @@ class Estudiante {
         }
     }
 
-    public function getEstudiantesByIdClase($idClase) {
+    public function getEstudiantesByIdClase($idClase, $mes, $año) {
         try{
             $arr_estudiantes = array();
             $estudiante = null;
@@ -79,7 +79,7 @@ class Estudiante {
             $comoConocio = null;
             $genero = null;
             
-            $sql = 'call getEstudiantesByIdClase(' . $idClase . ')';
+            $sql = 'call getEstudiantesByIdClase(' . $idClase . ', ' . $año . ', ' . $mes . ')';
             
             $query = \GlobalClass\Database::instance()->prepare($sql);
             $query->execute();

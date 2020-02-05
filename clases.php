@@ -134,9 +134,30 @@
             </p>
         </div>
         <div id="divEstudiantes" title="Estudiantes" style="display: none;">
-            <p>
-                <div id="jsEstudiantes"></div>
-            </p>
+            <div id="detailsDialog">
+                <form id="formFiltros">
+                    <div class="tabla">
+                        <div>
+                            <div class="col1"><label for="sMes_filtro">Mes:</label></div>
+                            <div class="col2"><select name="sMes_filtro" id="sMes_filtro" class="select2" ></select></div>
+                        </div>
+                        <div>
+                            <div class="col1"><label for="sAño_filtro">Año:</label></div>
+                            <div class="col2"><select id="sAño_filtro" name="sAño_filtro" class="select2"></select></div>
+                        </div>
+                        <div>
+                            <div class="col1"></div>
+                            <div class="col2 derecha buscar">
+                                <input type="button" id="bBuscar" onclick="buscarEstudiantes();" value="Buscar"></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <p>
+                    <div id="jsEstudiantes"></div>
+                </p>
+            </div>
         </div>
     </body>
 </html>
