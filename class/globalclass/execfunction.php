@@ -351,6 +351,15 @@ if(isset($_REQUEST['condicion'])) {
             } catch (\Exception $ex) {
                 throw new \Exception('execfunction/getCajaGrande_All(): ' . $ex->getMessage());
             }
+        case 'getEgresosCajaGrande':
+            try {
+                $arrEgresosCajaGrande = getEgresosCajaGrande();
+                $json_EgresosCajaGrande = json_encode($arrEgresosCajaGrande);
+                echo $json_EgresosCajaGrande;
+                exit();
+            } catch (\Exception $ex) {
+                throw new \Exception('execfunction/getEgresosCajaGrande(): ' . $ex->getMessage());
+            }
         case 'getTipoEgresoFijo_All':
             try {
                 $arrTipoEgresoFijo = TipoEgresoFijo::instance()->getTipoEgresoFijo_All();
@@ -764,6 +773,16 @@ function getCajaGrande_All() {
     $f_observacion = $_REQUEST['f_observacion'];
         
     $arrCajaGrande = CajaGrande::instance()->getCajaGrande_All($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion);
+    return $arrCajaGrande;
+}
+
+function getEgresosCajaGrande() {
+    $f_idTipoEgresoFijo = $_REQUEST['f_idTipoEgresoFijo'];
+    $f_fechaDesde = $_REQUEST['f_fechaDesde'];
+    $f_fechaHasta = $_REQUEST['f_fechaHasta'];
+    $f_observacion = $_REQUEST['f_observacion'];
+        
+    $arrCajaGrande = CajaGrande::instance()->getEgresosCajaGrande($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion);
     return $arrCajaGrande;
 }
 

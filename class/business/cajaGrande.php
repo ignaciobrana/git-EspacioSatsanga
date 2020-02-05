@@ -32,7 +32,16 @@ class CajaGrande {
     
     public function getCajaGrande_All($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion) {
         try{
-            $arrCajaGrande = \Data\CajaGrande::instance()->getCajaGrande_All($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion);
+            $arrCajaGrande = \Data\CajaGrande::instance()->getCajaGrande_All($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion, false);
+            return $arrCajaGrande;
+        } catch(Exception $ex) {
+            throw new Exception('Business\CajaGrande: ' . $ex->getMessage());
+        }
+    }
+
+    public function getEgresosCajaGrande($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion) {
+        try{
+            $arrCajaGrande = \Data\CajaGrande::instance()->getCajaGrande_All($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion, true);
             return $arrCajaGrande;
         } catch(Exception $ex) {
             throw new Exception('Business\CajaGrande: ' . $ex->getMessage());

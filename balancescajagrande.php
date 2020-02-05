@@ -68,5 +68,10 @@
             <?php include_once './control/footer.php';?>
             <!-- Footer::END -->
         </div>
+        <div id="divMovimientos" title="Movimientos" style="display: none;">
+            <p>
+                <div id="jsGridMovimientos"></div>
+            </p>
+        </div>
     </body>
 </html>

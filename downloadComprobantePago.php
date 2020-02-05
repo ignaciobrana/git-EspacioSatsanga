@@ -7,6 +7,7 @@ include_once './class/model/empleado.php';
 include_once './class/model/tipoMovimientoCC.php';
 include_once './class/model/estadoEmpleado.php';
 include_once './class/model/tipoEmpleado.php';
+include_once './class/model/cajaGrande.php';
 
 include_once './class/globalclass/database.php';
 include_once './class/business/liquidacionSueldo.php';

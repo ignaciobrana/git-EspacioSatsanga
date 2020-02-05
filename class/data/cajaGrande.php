@@ -20,7 +20,7 @@ class CajaGrande {
         trigger_error('La clonación de este objeto no está permitida', E_USER_ERROR);
     }
     
-    public function getCajaGrande_All($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion) {
+    public function getCajaGrande_All($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion, $soloEgresos = false) {
         try{
             $arr_CajaGrande = array();
             $cajaGrande = null;
@@ -29,7 +29,7 @@ class CajaGrande {
             $adelanto = null;
             $empleado = null;
             
-            $sql = self::getSelectQuery($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion);
+            $sql = self::getSelectQuery($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion, $soloEgresos);
             
             $query = \GlobalClass\Database::instance()->prepare($sql);
             $query->execute();
@@ -92,11 +92,12 @@ class CajaGrande {
         return $queryInsertUpdate;
     }
 
-    private function getSelectQuery($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion) {
+    private function getSelectQuery($f_idTipoEgresoFijo, $f_fechaDesde, $f_fechaHasta, $f_observacion, $soloEgresos = false) {
         $sql = 'call getCajaGrandeByFilter(' .
                 $f_idTipoEgresoFijo . ', ' . 
                 ($f_fechaDesde != null ? '\'' . $f_fechaDesde . '\'' : 'null') . ', ' . 
-                ($f_fechaHasta != null ? '\'' . $f_fechaHasta . '\'' : 'null') . ', \'' . $f_observacion . '\')';
+                ($f_fechaHasta != null ? '\'' . $f_fechaHasta . '\'' : 'null') . ', \'' . $f_observacion . '\', ' .
+                ($soloEgresos ? '1' : '0') . ')';
         return $sql;
     }
 

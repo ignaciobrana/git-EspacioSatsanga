@@ -535,9 +535,11 @@ CREATE PROCEDURE `getAdelantos`(
 )
 BEGIN
 
-	select a.idAdelanto, DATE_FORMAT(a.fecha,'%m/%d/%Y') as fecha, a.idMovimientoCajaChica, mcc.valor
-	from adelanto a
-	inner join movimientoCajaChica mcc on mcc.idMovimientoCajaChica = a.idMovimientoCajaChica
+	SELECT 	a.idAdelanto, DATE_FORMAT(a.fecha,'%m/%d/%Y') as fecha, a.idMovimientoCajaChica, cg.idCajaGrande, 
+			ifnull(mcc.valor, cg.valor) AS valor
+	from adelanto a 
+	left join movimientoCajaChica mcc on mcc.idMovimientoCajaChica = a.idMovimientoCajaChica 
+	left join cajaGrande cg on cg.idCajaGrande = a.idCajaGrande
 	where
 		month(a.fecha) = _mes and year(a.fecha) = _año and a.idEmpleado = _idEmpleado;
 	
@@ -636,7 +638,8 @@ CREATE PROCEDURE `getCajaGrandeByFilter`(
 	IN `_idTipoEgresoFijo` INT,
 	IN `_fechaDesde` DATE,
 	IN `_fechaHasta` DATE,
-	IN `_observacion` VARCHAR(50)
+	IN `_observacion` VARCHAR(50),
+	IN `_soloEgresos` INT
 )
 BEGIN
 
@@ -673,6 +676,13 @@ BEGIN
 	   end if;
 		set @filtro = concat(@filtro, 'cg.observacion like ''%', _observacion, '%''');
 	end if;
+	
+	if (_soloEgresos = 1) then
+		if (@filtro <> '') then
+			set @filtro = concat(@filtro, ' and ');
+	   end if;
+		set @filtro = concat(@filtro, 'cg.idTipoEgresoFijo is not null');
+	END if;
 	
 	if (@filtro <> '') then
 		set @consulta = concat(@consulta, ' where ', @filtro);
