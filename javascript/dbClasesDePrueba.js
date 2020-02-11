@@ -214,10 +214,11 @@ $(function () {
                     let dia = getDia_descripcion(date.getDay().toString()) + " " + date.getDate() + "/" + (date.getMonth() + 1);
                     if (isNew || (!isNew && fecha != oldFecha)) {
                         mensaje += "CLASE de PRUEBA - " + dia + " - " + response.clase._horaInicio + "hs - " + nombre;
+                        send_whatsapp(response.clase._empleado._celular, mensaje);
                     } else if (cancelada && !oldCancelada) {
                         mensaje += "Cancelación clase de prueba del " + dia + " - " + response.clase._horaInicio + "hs";
+                        send_whatsapp(response.clase._empleado._celular, mensaje);
                     }
-                    send_whatsapp(response.clase._empleado._celular, mensaje);
                 }
                 $('#detailsDialog').dialog('close');
                 $("#jsGrid").jsGrid("loadData");
@@ -384,19 +385,6 @@ $(function () {
         showLoading();
         
         var grid = $("#jsGrid").data("JSGrid");
-
-        /*f_fechaDesde: dFechaDesde,
-        f_fechaHasta: dFechaHasta,
-        f_nombre: filter._nombre,
-        f_clase: filter._clase._idClase,
-        f_asistio: filter._asistio,
-        f_pago: filter._pago,
-        f_promo: filter._promo,
-        f_telefono: filter._telefono,
-        f_email: filter._email,
-        f_comoConocio: filter._comoConocio._idComoConocio,
-        f_comoContacto: filter._comoContacto._idComoContacto,
-        f_observaciones: filter._observaciones*/
         
         var f_fechaDesde = grid.fields[0]._fromPicker[0].value !== "" ? convertStringDate_To_EnglishFormat(grid.fields[0]._fromPicker[0].value) : null;
         var f_fechaHasta = grid.fields[0]._toPicker[0].value !== "" ? convertStringDate_To_EnglishFormat(grid.fields[0]._toPicker[0].value) : null;
@@ -449,7 +437,6 @@ $(function () {
     };
 
     function configFormControls() {
-        
         $("#dFecha").datepicker();
         $('#sClase').val("-1").select2();
         $('#sAsistio').val("-1").select2();
@@ -610,15 +597,19 @@ function sortClasesPrueba(clasesPrueba_list) {
         if (dateClase <= date_now) {
             if (clasePrueba._asistio == idAsistio_Cerrado || (clasePrueba._asistio != null && clasePrueba._pago != null))
                 sort_list.push(clasePrueba);
-            else if (clasePrueba._asistio == null || clasePrueba._pago == null)
+            else if (clasePrueba._cancelada || clasePrueba._asistio == null || clasePrueba._pago == null)
                 top_list.push(clasePrueba);
             else
                 sort_list.push(clasePrueba);
-        } else sort_list.push(clasePrueba);
+        } else if (clasePrueba._cancelada) {
+            top_list.push(clasePrueba);
+        } else 
+            sort_list.push(clasePrueba);
     });
 
     //agregamos al inicio de la lista los elementos de top_list comenzando del final para mantener el ordenamiento
     for (let i = top_list.length - 1; i >= 0; i--)
         sort_list.unshift(top_list[i]);
+
     return sort_list;
 }
