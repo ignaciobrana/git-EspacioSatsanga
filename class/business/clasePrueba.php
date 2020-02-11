@@ -1,7 +1,7 @@
 <?php
 namespace Business;
 
-class Clase {
+class ClasePrueba {
 
     private static $_instance;
     
@@ -17,25 +17,16 @@ class Clase {
         trigger_error('La clonación de este objeto no está permitida', E_USER_ERROR);
     }
     
-    public function getClaseByEstado($idEstadoClase){
+    public function getClasesPrueba($f_fechaDesde, $f_fechaHasta, $f_nombre, $f_telefono, $f_email, $f_clase, $f_asistio, $f_pago, $f_promo, $f_comoConocio, $f_comoContacto, $f_observaciones) {
         try{
-            $list = \Data\Clase::instance()->getClaseByEstado($idEstadoClase);
+            $list = \Data\ClasePrueba::instance()->getClasesPrueba($f_fechaDesde, $f_fechaHasta, $f_nombre, $f_telefono, $f_email, $f_clase, $f_asistio, $f_pago, $f_promo, $f_comoConocio, $f_comoContacto, $f_observaciones);
             return $list;
         } catch(Exception $ex) {
-            throw new Exception('Business\Clase\getClaseByEstado: ' . $ex->getMessage());
-        }
-    }
-
-    public function getClaseById($idClase){
-        try{
-            $clase = \Data\Clase::instance()->getClaseById($idClase);
-            return $clase;
-        } catch(Exception $ex) {
-            throw new Exception('Business\Clase\getClaseById: ' . $ex->getMessage());
+            throw new Exception('Business\Clase\getClasesPrueba: ' . $ex->getMessage());
         }
     }
     
-    public function getClaseByRecibo($idRecibo){
+    /*public function getClaseByRecibo($idRecibo){
         try{
             $list = \Data\Clase::instance()->getClaseByRecibo($idRecibo);
             return $list;
@@ -51,14 +42,14 @@ class Clase {
         } catch(Exception $ex) {
             throw new Exception('Business\Clase\getClases: ' . $ex->getMessage());
         }
-    }
+    }*/
     
-    public function setClase($idClase, $idEmpleado, $idEstadoClase, $idDia, $horaInicio, $horaFin, $descripcion) {
+    public function setClasePrueba($idClasePrueba, $fecha, $nombre, $telefono, $email, $idClase, $asistio, $pago, $promo, $idComoConocio, $idComoContacto, $observaciones, $cancelada) {
         try{
-            $list = \Data\Clase::instance()->setClase($idClase, $idEmpleado, $idEstadoClase, $idDia, $horaInicio, $horaFin, $descripcion);
+            $list = \Data\ClasePrueba::instance()->setClasePrueba($idClasePrueba, $fecha, $nombre, $telefono, $email, $idClase, $asistio, $pago, $promo, $idComoConocio, $idComoContacto, $observaciones, $cancelada);
             return $list;
         } catch(Exception $ex) {
-            throw new Exception('Business\Clase\setClase: ' . $ex->getMessage());
+            throw new Exception('Business\Clase\setClasePrueba: ' . $ex->getMessage());
         }
     }
     

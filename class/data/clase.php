@@ -38,6 +38,28 @@ class Clase {
             throw new Exception('Data\Clase\getClaseByEstado: ' . $ex->getMessage());
         }
     }
+
+    public function getClaseById($idClase){
+        try{
+            $returnValue = array();
+            $clase = null;
+            
+            $sql = 'call getClaseById(' . $idClase . ');';
+            
+            $query = \GlobalClass\Database::instance()->prepare($sql);
+            $query->execute();
+            
+            $data = $query->fetchAll();
+            $rowCount = $query->rowCount();
+            
+            if (isset($data) && count($data) > 0) {
+                $clase = self::setObjectData($data[0]);
+            }
+            return $clase;
+        } catch(Exception $ex) {
+            throw new Exception('Data\Clase\getClaseById: ' . $ex->getMessage());
+        }
+    }
     
     public function getClaseByRecibo($idRecibo){
         try{
@@ -122,6 +144,8 @@ class Clase {
         $empleado = new \Model\Empleado();
         $empleado->set_IdEmpleado($data['idEmpleado']);
         $empleado->set_NombreApellido($data['nombreApellido']);
+        if (isset($data['celular']))
+            $empleado->set_Celular($data['celular']);
         $clase->set_Empleado($empleado);
 
         $estadoClase = new \Model\EstadoClase();

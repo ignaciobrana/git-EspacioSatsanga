@@ -33,7 +33,7 @@
                         <a href="#">Personas</a>
                         <div style="display: none;">
                             <ul class="sub-menu">
-                                <li><a href="./estudiantes.php"><span>Estudiantes</span></a></li>
+                                <li><a href="./estudiantes.php"><span>Alumnos</span></a></li>
                                 <li><a href="./empleados.php"><span>Empleados</span></a></li>
                             </ul>
                         </div>
@@ -81,6 +81,7 @@
                         <div style="display: none;">
                             <ul class="sub-menu">
                                 <li><a href="./clases.php"><span>Clases</span></a></li>
+                                <li><a href="./clasesdeprueba.php"><span>Clases de Prueba</span></a></li>
                                 <li><a href="./empresas.php"><span>Empresas</span></a></li>
                             </ul>
                         </div>

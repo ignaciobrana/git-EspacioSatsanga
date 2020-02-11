@@ -12,8 +12,10 @@ use GlobalClass\Session,
     Business\EstadoClase,
     Business\Genero,
     Business\ComoConocio,
+    Business\ComoContacto,
     Business\TipoEmpleado,
     Business\Clase,
+    Business\ClasePrueba,
     Business\Dia,
     Business\LiquidacionSueldo,
     Business\TipoMovimientoCC,
@@ -38,11 +40,12 @@ include_once dirname(__DIR__) . '/business/estadoEmpleado.php';
 include_once dirname(__DIR__) . '/business/estadoClase.php';
 include_once dirname(__DIR__) . '/business/genero.php';
 include_once dirname(__DIR__) . '/business/comoConocio.php';
+include_once dirname(__DIR__) . '/business/comoContacto.php';
 include_once dirname(__DIR__) . '/business/tipoEmpleado.php';
 include_once dirname(__DIR__) . '/business/clase.php';
 include_once dirname(__DIR__) . '/business/dia.php';
 include_once dirname(__DIR__) . '/business/liquidacionSueldo.php';
-include_once dirname(__DIR__) . '/business/clase.php';
+include_once dirname(__DIR__) . '/business/clasePrueba.php';
 include_once dirname(__DIR__) . '/business/tipoMovimientoCC.php';
 include_once dirname(__DIR__) . '/business/tipoEgresoFijo.php';
 include_once dirname(__DIR__) . '/business/cajaChica.php';
@@ -60,11 +63,12 @@ include_once dirname(__DIR__) . '/data/estadoEmpleado.php';
 include_once dirname(__DIR__) . '/data/estadoClase.php';
 include_once dirname(__DIR__) . '/data/genero.php';
 include_once dirname(__DIR__) . '/data/comoConocio.php';
+include_once dirname(__DIR__) . '/data/comoContacto.php';
 include_once dirname(__DIR__) . '/data/tipoEmpleado.php';
 include_once dirname(__DIR__) . '/data/clase.php';
 include_once dirname(__DIR__) . '/data/dia.php';
 include_once dirname(__DIR__) . '/data/liquidacionSueldo.php';
-include_once dirname(__DIR__) . '/data/clase.php';
+include_once dirname(__DIR__) . '/data/clasePrueba.php';
 include_once dirname(__DIR__) . '/data/tipoMovimientoCC.php';
 include_once dirname(__DIR__) . '/data/tipoEgresoFijo.php';
 include_once dirname(__DIR__) . '/data/cajaChica.php';
@@ -81,9 +85,11 @@ include_once dirname(__DIR__) . '/model/factura.php';
 include_once dirname(__DIR__) . '/model/estadoEstudiante.php';
 include_once dirname(__DIR__) . '/model/estadoEmpleado.php';
 include_once dirname(__DIR__) . '/model/comoConocio.php';
+include_once dirname(__DIR__) . '/model/comoContacto.php';
 include_once dirname(__DIR__) . '/model/genero.php';
 include_once dirname(__DIR__) . '/model/tipoEmpleado.php';
 include_once dirname(__DIR__) . '/model/clase.php';
+include_once dirname(__DIR__) . '/model/clasePrueba.php';
 include_once dirname(__DIR__) . '/model/dia.php';
 include_once dirname(__DIR__) . '/model/estadoClase.php';
 include_once dirname(__DIR__) . '/model/liquidacionSueldo.php';
@@ -147,6 +153,13 @@ if(isset($_REQUEST['condicion'])) {
             } catch (\Exception $ex) {
                 throw new \Exception('execfunction/getClases_All(): ' . $ex->getMessage());
             }
+        case 'getClasesPrueba_All':
+            try {
+                getClasesPrueba_All();
+                exit();
+            } catch (\Exception $ex) {
+                throw new \Exception('execfunction/getClasesPrueba_All(): ' . $ex->getMessage());
+            }
         case 'getEmpresas_All':
             try {
                 getEmpresa_All();
@@ -171,6 +184,9 @@ if(isset($_REQUEST['condicion'])) {
             exit();
         case 'setClase':
             setClase();
+            exit();
+        case 'setClasePrueba':
+            setClasePrueba();
             exit();
         case 'setEmpresa':
             setEmpresa();
@@ -232,6 +248,15 @@ if(isset($_REQUEST['condicion'])) {
             } catch (\Exception $ex) {
                 throw new \Exception('execfunction/getComoConocio_All(): ' . $ex->getMessage());
             }
+        case 'getComoContacto_All':
+            try {
+                $arrComoContacto = ComoContacto::instance()->getComoContacto_All();
+                $json_ComoContacto = json_encode($arrComoContacto);
+                echo $json_ComoContacto;
+                exit();
+            } catch (\Exception $ex) {
+                throw new \Exception('execfunction/getComoContacto_All(): ' . $ex->getMessage());
+            }
         case 'getClaseByEstado':
             try {
                 $f_idEstadoClase = $_REQUEST['f_idEstadoClase'];
@@ -285,6 +310,14 @@ if(isset($_REQUEST['condicion'])) {
                 exit();
             } catch (\Exception $ex) {
                 throw new \Exception('execfunction/downloadEstudiantesDeClase(): ' . $ex->getMessage());
+            }
+        case 'downloadMails_ClasesDePrueba':
+            try {
+                downloadMails_ClasesDePrueba();
+                echo '1';
+                exit();
+            } catch (\Exception $ex) {
+                throw new \Exception('execfunction/downloadMails_ClasesDePrueba(): ' . $ex->getMessage());
             }
         case 'getEmpleadosForDownloadComprobantes':
             try {
@@ -613,6 +646,27 @@ function getClase_All() {
     echo $json_Clases;
 }
 
+function getClasesPrueba_All() {
+    $f_fechaDesde = $_REQUEST['f_fechaDesde'];
+    $f_fechaHasta = $_REQUEST['f_fechaHasta'];
+    $f_nombre = $_REQUEST['f_nombre'];
+    $f_telefono = $_REQUEST['f_telefono'];
+    $f_email = $_REQUEST['f_email'];
+    $f_clase = $_REQUEST['f_clase'];
+    $f_asistio = $_REQUEST['f_asistio'];
+    $f_pago = $_REQUEST['f_pago'];
+    $f_promo = $_REQUEST['f_promo'];
+    $f_comoConocio = $_REQUEST['f_comoConocio'];
+    $f_comoContacto = $_REQUEST['f_comoContacto'];
+    $f_observaciones = $_REQUEST['f_observaciones'];
+
+    $arrClasesPrueba = ClasePrueba::instance()->getClasesPrueba($f_fechaDesde, $f_fechaHasta, $f_nombre, 
+    $f_telefono, $f_email, $f_clase, $f_asistio, $f_pago, $f_promo, $f_comoConocio, $f_comoContacto, $f_observaciones);
+    
+    $json_ClasesPrueba = json_encode($arrClasesPrueba);
+    echo $json_ClasesPrueba;
+}
+
 function setClase() {
     $idClase = $_REQUEST['idClase'];
     $idEmpleado = $_REQUEST['idEmpleado'];
@@ -623,6 +677,29 @@ function setClase() {
     $descripcion = $_REQUEST['descripcion'];
     $returnValue = Clase::instance()->setClase($idClase, $idEmpleado, $idEstadoClase, $idDia, $horaInicio, $horaFin, $descripcion);
     $json_returnValue = json_encode($returnValue);
+    echo $json_returnValue;
+}
+
+function setClasePrueba() {
+    $idClasePrueba = $_REQUEST['idClasePrueba'];
+    $fecha = $_REQUEST['fecha'];
+    $nombre = $_REQUEST['nombre'];
+    $telefono = $_REQUEST['telefono'];
+    $email = $_REQUEST['email'];
+    $idClase = $_REQUEST['idClase'];
+    $asistio = $_REQUEST['asistio'];
+    $pago = $_REQUEST['pago'];
+    $promo = $_REQUEST['promo'];
+    $idComoConocio = $_REQUEST['idComoConocio'];
+    $idComoContacto = $_REQUEST['idComoContacto'];
+    $observaciones = $_REQUEST['observaciones'];
+    $cancelada = $_REQUEST['cancelada'];
+    $returnValue = ClasePrueba::instance()->setClasePrueba($idClasePrueba, $fecha, $nombre, $telefono, $email, $idClase, $asistio, $pago, $promo, $idComoConocio, $idComoContacto, $observaciones, $cancelada);
+    $response = array(
+        "returnValue" => $returnValue,
+        "clase" => Clase::instance()->getClaseById($idClase)
+    );
+    $json_returnValue = json_encode($response);
     echo $json_returnValue;
 }
 
@@ -656,7 +733,7 @@ function setEmpresa() {
 
 function downloadEstudiantesMails() {
     $nombre_archivo = "../../temp/estudiantes_mails.txt";
-    $mails = getMails();
+    $mails = getMailsAlumnos();
     if($archivo = fopen($nombre_archivo, "w"))
     {
         fwrite($archivo, $mails);
@@ -674,7 +751,17 @@ function downloadEstudiantesDeClase() {
     }
 }
 
-function getMails() {
+function downloadMails_ClasesDePrueba() {
+    $nombre_archivo = "../../temp/alumnos_mails_clasesdeprueba.txt";
+    $mails = getMailsAlumnos_ClasesDePrueba();
+    if($archivo = fopen($nombre_archivo, "w"))
+    {
+        fwrite($archivo, $mails);
+        fclose($archivo);
+    }
+}
+
+function getMailsAlumnos() {
     $mails = '';
     $i = 0;
   
@@ -699,6 +786,36 @@ function getMails() {
             $i = 1;
         } else
             $mails .= "\r\n" . $est->get_Email();
+    }
+    
+    return $mails;
+}
+
+function getMailsAlumnos_ClasesDePrueba() {
+    $i = 0;
+    $mails = '';
+    
+    $f_fechaDesde = $_REQUEST['f_fechaDesde'];
+    $f_fechaHasta = $_REQUEST['f_fechaHasta'];
+    $f_nombre = $_REQUEST['f_nombre'];
+    $f_clase = $_REQUEST['f_clase'];
+    $f_asistio = $_REQUEST['f_asistio'];
+    $f_pago = $_REQUEST['f_pago'];
+    $f_promo = $_REQUEST['f_promo'];
+    $f_telefono = $_REQUEST['f_telefono'];
+    $f_email = $_REQUEST['f_email'];
+    $f_comoConocio = $_REQUEST['f_comoConocio'];
+    $f_comoContacto = $_REQUEST['f_comoContacto'];
+    $f_observaciones = $_REQUEST['f_observaciones'];
+    
+    $arrClasesPrueba = ClasePrueba::instance()->getClasesPrueba($f_fechaDesde, $f_fechaHasta, $f_nombre, $f_telefono, $f_email, $f_clase, $f_asistio, $f_pago, $f_promo, $f_comoConocio, $f_comoContacto, $f_observaciones);
+    
+    foreach ($arrClasesPrueba as $clasePrueba) {
+        if ($i === 0) {
+            $mails .= $clasePrueba->get_Email();
+            $i = 1;
+        } else
+            $mails .= "\r\n" . $clasePrueba->get_Email();
     }
     
     return $mails;

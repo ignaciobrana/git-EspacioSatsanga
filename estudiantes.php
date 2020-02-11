@@ -29,6 +29,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/jquery-ui-i18n.min.js"></script>
         
         <script src="./javascript/common.js"></script>
+        <script src="./javascript/constants.js"></script>
         <script src="./javascript/dbEstudiantes.js"></script>
         
         <script src="./javascript/src/jsgrid.core.js"></script>
@@ -58,7 +59,7 @@
                 <div class="container">
                     <div class="row">
 			            <div class="sixteen columns">
-                            <p class="tituloListado">Listado de Estudiantes</p>
+                            <p class="tituloListado">Listado de Alumnos</p>
                             
                             <div id="jsGrid"></div>
 

@@ -82,12 +82,32 @@ CREATE TABLE IF NOT EXISTS `clase` (
 -- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla satsanga_dev.comoconocio
-CREATE TABLE IF NOT EXISTS `comoconocio` (
+CREATE TABLE IF NOT EXISTS `comoConocio` (
   `idComoConocio` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) NOT NULL,
   `descripcion` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idComoConocio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla satsanga_dev.comocontacto
+CREATE TABLE IF NOT EXISTS `comoContacto` (
+  `idComoContacto` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(20) NOT NULL,
+  `descripcion` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idComoContacto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `comoContacto` (`idComoContacto`, `nombre`, `descripcion`) VALUES 
+(NULL, 'Formulario web', NULL), 
+(NULL, 'E-mail', NULL), 
+(NULL, 'WhatsApp', NULL), 
+(NULL, 'Teléfono', NULL),
+(NULL, 'Facebook', NULL), 
+(NULL, 'Instagram', NULL), 
+(NULL, 'Personalmente', NULL), 
+(NULL, 'Otros', NULL);
 
 -- La exportación de datos fue deseleccionada.
 
@@ -351,6 +371,29 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
 INSERT INTO usuario (NombreUsuario, PASSWORD)
 VALUES ('satsanga', '8fb/Vv822QjwWS76SahafjAkeA2pv8yBjBi5+dtyMBc='); --pass => upasaka0
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla satsanga_dev.usuario
+CREATE TABLE IF NOT EXISTS `clasePrueba` (
+	`idClasePrueba` BIGINT(20) NOT NULL AUTO_INCREMENT,
+	`fecha` DATE NOT NULL,
+	`nombre` VARCHAR(50) NOT NULL,
+	`telefono` VARCHAR(50) NOT NULL,
+	`email` VARCHAR(255) NOT NULL,
+	`idClase` INT(11) NOT NULL,
+	`asistio` INT(11) NULL DEFAULT NULL,
+	`pago` INT(11) NULL DEFAULT NULL,
+	`promo` INT(11) NULL DEFAULT NULL COMMENT 'es en %',
+	`idComoConocio` INT(11) NOT NULL,
+	`idComoContacto` INT(11) NOT NULL,
+	`observaciones` VARCHAR(255) NOT NULL DEFAULT '',
+	`cancelada` TINYINT(1) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`idClasePrueba`),
+	CONSTRAINT `FK_claseprueba_clase` FOREIGN KEY (`idClase`) REFERENCES `clase` (`idClase`),
+	CONSTRAINT `FK_claseprueba_comoconocio` FOREIGN KEY (`idComoConocio`) REFERENCES `comoconocio` (`idComoConocio`),
+	CONSTRAINT `FK_claseprueba_comocontacto` FOREIGN KEY (`idComoContacto`) REFERENCES `comocontacto` (`idComoContacto`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -699,14 +742,32 @@ BEGIN
 END//
 DELIMITER ;
 
+-- Volcando estructura para procedimiento satsanga_dev.getClaseById
+DELIMITER //
+CREATE PROCEDURE `getClaseById`(
+	IN `_idClase` INT
+)
+BEGIN
+
+	select 	c.idClase, time_format(c.horaInicio, "%H:%i") as horaInicio, 
+				time_format(c.horaFin, "%H:%i") as horaFin, c.descripcion,
+				e.idEmpleado, ec.idEstadoClase, ec.nombre as nombreEstado, 
+				d.idDia, d.nombre as nombreDia, 
+				time_format( TIMEDIFF(c.horaFin, c.horaInicio), "%H:%i") as duracion,
+				SUBSTRING_INDEX(e.nombreApellido, ' ', 1) as nombreApellido, e.celular
+	from clase c
+	inner join empleado e on e.idEmpleado = c.idEmpleado
+	inner join dia d on d.idDia = c.idDia
+	inner join estadoClase ec on ec.idEstadoClase = c.idEstadoClase
+	where
+		c.idClase = _idClase;
+END//
+DELIMITER ;
+
 -- Volcando estructura para procedimiento satsanga_dev.getClaseByEstado
 DELIMITER //
 CREATE PROCEDURE `getClaseByEstado`(
 	IN `_idEstadoClase` INT
-
-
-
-
 )
 BEGIN
 
@@ -757,8 +818,6 @@ CREATE PROCEDURE `getClasesByFilter`(
 	IN `_idEstadoClase` INT,
 	IN `_idDia` INT,
 	IN `_descripcion` VARCHAR(50)
-
-
 )
 BEGIN
 
@@ -815,12 +874,145 @@ BEGIN
 END//
 DELIMITER ;
 
+-- Volcando estructura para procedimiento satsanga_dev.getClasesPruebaByFilter
+DELIMITER //
+CREATE PROCEDURE `getClasesPruebaByFilter`(
+	IN `_fechaDesde` DATE,
+	IN `_fechaHasta` DATE,
+	IN `_nombre` VARCHAR(50),
+	IN `_telefono` VARCHAR(50),
+	IN `_email` VARCHAR(255),
+	IN `_idClase` INT,
+	IN `_asistio` INT,
+	IN `_pago` INT,
+	IN `_promo` INT,
+	IN `_idComoConocio` INT,
+	IN `_idComoContacto` INT,
+	IN `_observaciones` VARCHAR(255)
+)
+Begin
+	set @filtro = '';
+	   
+	set @consulta = 'select cp.idClasePrueba, DATE_FORMAT(cp.fecha,''%m/%d/%Y'') as fecha, cp.nombre, cp.telefono, cp.email, cp.idClase, cp.asistio, cp.pago, ';
+	set @consulta = CONCAT(@consulta, 'cp.promo, cp.idComoConocio, cp.idComoContacto, cp.observaciones, cp.cancelada, ');
+	set @consulta = CONCAT(@consulta, 'time_format(c.horaInicio, ''%H:%i'') as horaInicio, ');
+	set @consulta = CONCAT(@consulta, 'e.celular as emple_celular, e.nombreApellido as emple_nombre, d.idDia, d.nombre as dia_nombre ');
+	set @consulta = CONCAT(@consulta, 'from clasePrueba cp ');
+	set @consulta = CONCAT(@consulta, 'inner join clase c on c.idClase = cp.idClase ');
+	set @consulta = CONCAT(@consulta, 'inner join dia d on d.idDia = c.idDia ');
+	set @consulta = CONCAT(@consulta, 'inner join empleado e on c.idEmpleado = e.idEmpleado ');
+
+	if (_fechaDesde is not null) then
+		set @filtro = concat(@filtro, 'cp.fecha >= ''', _fechaDesde, '''');
+	end if;
+	
+	if (_fechaHasta is not null) then
+		if (@filtro <> '') then
+			set @filtro = concat(@filtro, ' and ');
+	   end if;
+		set @filtro = concat(@filtro, 'cp.fecha <= ''', _fechaHasta, '''');
+	end if;
+
+	if (_nombre <> '' && _nombre is not null) then
+		if (@filtro <> '') then
+			set @filtro = concat(@filtro, ' and ');
+	   end if;
+		set @filtro = concat(@filtro, 'cp.nombre like ''%', _nombre, '%''');
+	end if;
+	
+	if (_telefono <> '' && _telefono is not null) then
+		if (@filtro <> '') then
+			set @filtro = concat(@filtro, ' and ');
+	   end if;
+		set @filtro = concat(@filtro, 'cp.telefono like ''%', _telefono, '%''');
+	end if;
+	
+	if (_email <> '' && _email is not null) then
+		if (@filtro <> '') then
+			set @filtro = concat(@filtro, ' and ');
+	   end if;
+		set @filtro = concat(@filtro, 'cp.email like ''%', _email, '%''');
+	end if;
+	
+	if (_idClase <> '' and _idClase is not null and _idClase <> 0) then
+		if (@filtro <> '') then
+			set @filtro = concat(@filtro, ' and ');
+	   end if;
+		set @filtro = concat(@filtro, 'cp.idClase = ', _idClase);
+	end if;
+	 
+	if (_asistio <> '' and _asistio is not null and _asistio <> 0) then
+		if (@filtro <> '') then
+			set @filtro = concat(@filtro, ' and ');
+	   end if;
+		set @filtro = concat(@filtro, 'cp.asistio = ', _asistio);
+	end if;
+	
+	if (_pago <> '' and _pago is not null and _pago <> 0) then
+		if (@filtro <> '') then
+			set @filtro = concat(@filtro, ' and ');
+	   end if;
+		set @filtro = concat(@filtro, 'cp.pago = ', _pago);
+	end if;
+
+	if (_promo <> '' and _promo is not null and _promo <> 0) then
+		if (@filtro <> '') then
+			set @filtro = concat(@filtro, ' and ');
+	   end if;
+		set @filtro = concat(@filtro, 'cp.promo = ', _promo);
+	end if;
+	
+	if (_idComoConocio <> '' and _idComoConocio is not null and _idComoConocio <> 0) then
+		if (@filtro <> '') then
+			set @filtro = concat(@filtro, ' and ');
+	   end if;
+		set @filtro = concat(@filtro, 'cp.idComoConocio = ', _idComoConocio);
+	end if;
+	
+	if (_idComoContacto <> '' and _idComoContacto is not null and _idComoContacto <> 0) then
+		if (@filtro <> '') then
+			set @filtro = concat(@filtro, ' and ');
+	   end if;
+		set @filtro = concat(@filtro, 'cp.idComoContacto = ', _idComoContacto);
+	end if;
+	
+	if (_observaciones <> '' and _observaciones is not null) then
+		if (@filtro <> '') then
+			set @filtro = concat(@filtro, ' and ');
+	   end if;
+		set @filtro = concat(@filtro, 'cp.observaciones like ''%', _observaciones, '%''');
+	end if;
+	
+	if (@filtro <> '') then
+		set @consulta = concat(@consulta, ' where ', @filtro);
+	end if;
+	set @consulta = concat(@consulta, ' order by cp.fecha desc, c.horaInicio asc');
+	
+	-- preparamos el objeto Statement a partir de nuestra variable
+	PREPARE smpt FROM @consulta;
+	-- ejecutamos el Statement
+	EXECUTE smpt;
+	-- liberamos la memoria
+	DEALLOCATE PREPARE smpt;
+END//
+DELIMITER ;
+
 -- Volcando estructura para procedimiento satsanga_dev.getComoConocio_All
 DELIMITER //
 CREATE PROCEDURE `getComoConocio_All`()
 BEGIN
 
 	SELECT idComoConocio, Nombre, Descripcion from comoConocio;
+
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento satsanga_dev.getComoContacto_All
+DELIMITER //
+CREATE PROCEDURE `getComoContacto_All`()
+BEGIN
+
+	SELECT idComoContacto, Nombre, Descripcion from comoContacto;
 
 END//
 DELIMITER ;
@@ -2046,6 +2238,68 @@ BEGIN
 
 END//
 DELIMITER ;
+
+-- Volcando estructura para procedimiento satsanga_dev.setClasePrueba
+DELIMITER //
+CREATE PROCEDURE `setClasePrueba`(
+	IN `_idClasePrueba` INT,
+	IN `_fecha` DATE,
+	IN `_nombre` VARCHAR(50),
+	IN `_telefono` VARCHAR(50),
+	IN `_email` VARCHAR(255),
+	IN `_idClase` INT,
+	IN `_asistio` INT,
+	IN `_pago` INT,
+	IN `_promo` INT,
+	IN `_idComoConocio` INT,
+	IN `_idComoContacto` INT,
+	IN `_observaciones` VARCHAR(255),
+	IN `_cancelada` INT
+)
+BEGIN
+
+	set @queryInsertUpdate = '';
+	if (_idClasePrueba = '0' or _idClasePrueba = 0) then
+		set @queryInsertUpdate = 'insert into clasePrueba (fecha, nombre, telefono, email, idClase, asistio, pago, promo, idComoConocio, idComoContacto, observaciones, cancelada) values (';
+		set @queryInsertUpdate = concat(@queryInsertUpdate, '''', _fecha, ''', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, '''', _nombre, ''', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, '''', _telefono, ''', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, '''', _email, ''', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, _idClase, ', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, ifnull(_asistio, 'null'), ', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, ifnull(_pago, 'null'), ', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, ifnull(_promo, 'null'), ', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, _idComoConocio, ', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, _idComoContacto, ', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, '''', _observaciones, ''', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, _cancelada, ')');
+	else
+		set @queryInsertUpdate = 'update clasePrueba set ';
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'fecha = ''', _fecha, ''', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'nombre = ''', _nombre, ''', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'telefono = ''', _telefono, ''', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'email = ''', _email, ''', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'idClase = ', _idClase, ', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'asistio = ', ifnull(_asistio, 'null'), ', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'pago = ', ifnull(_pago, 'null'), ', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'promo = ', ifnull(_promo, 'null'), ', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'idComoConocio = ', _idComoConocio, ', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'idComoContacto = ', _idComoContacto, ', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'observaciones = ''', _observaciones, ''', ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'cancelada = ', _cancelada, ' ');
+		set @queryInsertUpdate = concat(@queryInsertUpdate, 'where idClasePrueba = ', _idClasePrueba);
+	end if;
+
+	-- preparamos el objeto Statement a partir de nuestra variable
+	PREPARE smpt FROM @queryInsertUpdate;
+	-- ejecutamos el Statement
+	EXECUTE smpt;
+	-- liberamos la memoria
+	DEALLOCATE PREPARE smpt;
+   -- select @queryInsertUpdate;
+
+END//
+
 
 -- Volcando estructura para procedimiento satsanga_dev.setEmpleado
 DELIMITER //

@@ -23,6 +23,14 @@
     border: none !important;
 }
 
+.buttonWhatsApp {
+    background-image: url(../img/whatsapp.png) !important; 
+    height: 40px !important;
+    background-color: transparent !important;
+    background-repeat: no-repeat !important; 
+    border: none !important;
+}
+
 /*---------------------------------------------------------------------------*/
 
 .jsgrid {
@@ -116,6 +124,9 @@
     width: auto;
 }
 
+tr.jsgrid-row {
+    height: 10px;
+  }
 
 .jsgrid-selected-row .jsgrid-cell {
     cursor: pointer;
@@ -148,5 +159,13 @@
 }
 
 .bg-red td {
-    background-color: #f08080 !important;
+    background-color: #fd74747c !important;
+}
+
+.bg-orange td {
+    background-color: #ffbb619d !important;
+}
+
+.bg-green td {
+    background-color: #75fc6381 !important;
 }

@@ -31,6 +31,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/i18n/jquery-ui-i18n.min.js"></script>
         
         <script src="./javascript/common.js"></script>
+        <script src="./javascript/constants.js"></script>
         <script src="./javascript/dbCajaChica.js"></script>
         
         <script src="./javascript/src/jsgrid.core.js"></script>

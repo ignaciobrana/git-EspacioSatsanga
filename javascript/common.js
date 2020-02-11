@@ -153,6 +153,19 @@ function getMes_descripcion(numeroMes) {
     }
 }
 
+function getDia_descripcion(numeroDia) {
+    switch(numeroDia) {
+        case "0": return "Domingo";
+        case "1": return "Lunes";
+        case "2": return "Martes";
+        case "3": return "Miercoles";
+        case "4": return "Jueves";
+        case "5": return "Viernes";
+        case "6": return "Sabado";
+        default: return "día incorrecto";
+    }
+}
+
 function getDateObject(strDate) {
     var vecFecha = strDate.split("/");
     return new Date(vecFecha[1] + "/" + vecFecha[0] + "/" + vecFecha[2]);
@@ -272,25 +285,6 @@ function formatearfecha(fecha) {
     return (fecha); 
 }
 
-function get_array_meses() {
-    let meses = [ 
-        {_mes: "0", _descripcion: ""},
-        {_mes: "1", _descripcion: "Enero"},
-        {_mes: "2", _descripcion: "Febrero"}, 
-        {_mes: "3", _descripcion: "Marzo"},
-        {_mes: "4", _descripcion: "Abril"},
-        {_mes: "5", _descripcion: "Mayo"},
-        {_mes: "6", _descripcion: "Junio"},
-        {_mes: "7", _descripcion: "Julio"},
-        {_mes: "8", _descripcion: "Agosto"},
-        {_mes: "9", _descripcion: "Septiembre"},
-        {_mes: "10", _descripcion: "Octubre"},
-        {_mes: "11", _descripcion: "Noviembre"},
-        {_mes: "12", _descripcion: "Diciembre"}
-    ];
-    return meses;
-}
-
 function downloadFile(file) {
     //Usaremos un link para iniciar la descarga
     var save = document.createElement('a');
@@ -308,4 +302,52 @@ function downloadFile(file) {
     save.dispatchEvent(clicEvent);
     //Y liberamos recursos...
     (window.URL || window.webkitURL).revokeObjectURL(save.href);
+}
+
+function open_new_window(href) {
+    //Usaremos un link para iniciar la descarga
+    var save = document.createElement('a');
+    save.href = href;
+    save.target = '_blank';
+    var clicEvent = new MouseEvent('click', {
+      'view': window,
+      'bubbles': true,
+      'cancelable': true
+    });
+    //Simulamos un clic del usuario
+    //no es necesario agregar el link al DOM.
+    save.dispatchEvent(clicEvent);
+}
+
+function send_whatsapp(number, message) {
+    var message_encode = encodeURI(message);
+    var url = "https://api.whatsapp.com/send?phone=" + number + "&text=" + message_encode;
+    open_new_window(url);
+}
+
+/* --------------------------------------------------------------------------- */
+/*                      funciones que retornan constantes                      */
+/* --------------------------------------------------------------------------- */
+function get_array_meses() {
+    return arr_meses; //constante definida en constants.js
+}
+
+function get_array_asistio() {
+    return arr_asistio; //constante definida en constants.js
+}
+
+function get_array_pago() {
+    return arr_pago; //constante definida en constants.js
+}
+
+function get_array_promo() {
+    return arr_promo; //constante definida en constants.js
+}
+
+function get_idComoConocio_Otros() {
+    return idComoConocio_Otros; //constante definida en constants.js
+}
+
+function get_idComoContacto_Otros() {
+    return idComoContacto_Otros; //constante definida en constants.js
 }

@@ -35,7 +35,7 @@
         
         <script src="./javascript/common.js"></script>
         <script src="./javascript/constants.js"></script>
-        <script src="./javascript/dbClases.js"></script>
+        <script src="./javascript/dbClasesDePrueba.js"></script>
         
         <script src="./javascript/src/jsgrid.core.js"></script>
         <script src="./javascript/src/jsgrid.load-indicator.js"></script>
@@ -67,7 +67,7 @@
                 <div class="container">
                     <div class="row">
 			            <div class="sixteen columns">
-                            <p class="tituloListado">Listado de Clases</p>
+                            <p class="tituloListado">Listado de Clases de Prueba</p>
                             
                             <div id="jsGrid"></div>
 
@@ -75,28 +75,52 @@
                                 <form id="detailsForm">
                                     <div class="tabla">
                                         <div>
-                                            <div class="col1"><label for="empleado">Empleado:</label></div>
-                                            <div class="col2"><select name="sEmpleado" id="sEmpleado" class="select2" ></select></div>
+                                            <div class="col1"><label for="fecha">Fecha:</label></div>
+                                            <div class="col2"><input id="dFecha" name="dFecha" type="text" /></div>
                                         </div>
                                         <div>
-                                            <div class="col1"><label for="dia">Día:</label></div>
-                                            <div class="col2"><select name="sDia" id="sDia" class="select2" ></select></div>
+                                            <div class="col1"><label for="nombre">Nombre:</label></div>
+                                            <div class="col2"><input id="tNombre" name="tNombre" type="text" /></select></div>
                                         </div>
                                         <div>
-                                            <div class="col1"><label for="horaInicio">Hora Inicio:</label></div>
-                                            <div class="col2"><input type="text" id="tHoraInicio" name="tHoraInicio" class="timepicker"/></div>
+                                            <div class="col1"><label for="telefono">Teléfono:</label></div>
+                                            <div class="col2"><input id="tTelefono" name="tTelefono" type="text" /></div>
                                         </div>
                                         <div>
-                                            <div class="col1"><label for="horaFin">Hora Fin:</label></div>
-                                            <div class="col2"><input type="text" id="tHoraFin" name="tHoraFin" class="timepicker"/></div>
+                                            <div class="col1"><label for="email">Email:</label></div>
+                                            <div class="col2"><input type="text" id="tEmail" name="tEmail" /></div>
                                         </div>
                                         <div>
-                                            <div class="col1"><label for="estado">Estado:</label></div>
-                                            <div class="col2"><select name="sEstado" id="sEstado" class="select2" ></select></div>
-                                        </div>                                      
+                                            <div class="col1"><label for="clase">Clase:</label></div>
+                                            <div class="col2"><select name="sClase" id="sClase" class="select2" ></select></div>
+                                        </div>
                                         <div>
-                                            <div class="col1"><label for="descripcion">Descripción:</label></div>
-                                            <div class="col2"><textarea id="tDescripcion" name="tDescripcion"></textarea></div>
+                                            <div class="col1"><label for="asistio">Asistió:</label></div>
+                                            <div class="col2"><select name="sAsistio" id="sAsistio" class="select2" ></select></div>
+                                        </div>
+                                        <div>
+                                            <div class="col1"><label for="pago">Pagó:</label></div>
+                                            <div class="col2"><select name="sPago" id="sPago" class="select2" ></select></div>
+                                        </div>
+                                        <div>
+                                            <div class="col1"><label for="promo">Promo:</label></div>
+                                            <div class="col2"><select name="sPromo" id="sPromo" class="select2" ></select></div>
+                                        </div>
+                                        <div>
+                                            <div class="col1"><label for="comoConocio">Cómo Conoció?</label></div>
+                                            <div class="col2"><select name="sComoConocio" id="sComoConocio" class="select2" ></select></div>
+                                        </div>
+                                        <div>
+                                            <div class="col1"><label for="comoContacto">Cómo Contactó:</label></div>
+                                            <div class="col2"><select name="sComoContacto" id="sComoContacto" class="select2" ></select></div>
+                                        </div>
+                                        <div>
+                                            <div class="col1"><label for="observaciones">Observaciones:</label></div>
+                                            <div class="col2"><textarea id="tObservaciones" name="tObservaciones"></textarea></div>
+                                        </div>
+                                        <div>
+                                            <div class="col1"><label for="cancelada">Cancelada:</label></div>
+                                            <div class="col2"><input type="checkbox" id="chkCancelada" name="chkCancelada" style="width: 255px; margin-left: -120px;margin-top: 5px;" /></div>
                                         </div>
                                         
                                         <div class="derecha">
@@ -121,44 +145,6 @@
               <span class="ui-icon ui-icon-close" style="float:left; margin:0 7px 50px 0;"></span>
               Complete todos los campos requeridos!
             </p>
-        </div>
-        <div id="error-message-HorasIncorrectas" title="Atención!!" style="display: none;">
-            <p>
-              <span class="ui-icon ui-icon-close" style="float:left; margin:0 7px 50px 0;"></span>
-              La hora de Inicio debe ser menor a la hora de finalización de la clase.
-            </p>
-        </div>
-        <div id="error-message-claseDuplicada" title="Atención!!" style="display: none;">
-            <p>
-              <span class="ui-icon ui-icon-close" style="float:left; margin:0 7px 50px 0;"></span>
-              Ya existe una clase para el día y la hora indicada!
-            </p>
-        </div>
-        <div id="divEstudiantes" title="Estudiantes" style="display: none;">
-            <div id="detailsDialog">
-                <form id="formFiltros">
-                    <div class="tabla">
-                        <div>
-                            <div class="col1"><label for="sMes_filtro">Mes:</label></div>
-                            <div class="col2"><select name="sMes_filtro" id="sMes_filtro" class="select2" ></select></div>
-                        </div>
-                        <div>
-                            <div class="col1"><label for="sAño_filtro">Año:</label></div>
-                            <div class="col2"><select id="sAño_filtro" name="sAño_filtro" class="select2"></select></div>
-                        </div>
-                        <div>
-                            <div class="col1"></div>
-                            <div class="col2 derecha buscar">
-                                <input type="button" id="bBuscar" onclick="buscarEstudiantes();" value="Buscar"></button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
-                <p>
-                    <div id="jsEstudiantes"></div>
-                </p>
-            </div>
         </div>
     </body>
 </html>

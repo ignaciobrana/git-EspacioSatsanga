@@ -191,7 +191,7 @@ $(function() {
         };
 
         $('#detailsDialog')
-            .dialog('option', 'title', dialogType + ' estudiante')
+            .dialog('option', 'title', dialogType + ' alumno')
             .dialog('open');
     };
 
@@ -357,7 +357,7 @@ $(function() {
                     width: 75,
                     headerTemplate: function() {
                         var $customAddButton = $('<button>').attr('type', 'button')
-                                .attr('title', 'Agregar estudiante nuevo')
+                                .attr('title', 'Agregar nuevo alumno')
                                 .button({icons: {primary: null}})
                                 .addClass("buttonAdd")
                                 .on('click', function () { showDetailsDialog('Nuevo', {}); });
