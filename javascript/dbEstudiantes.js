@@ -1,3 +1,4 @@
+var showTotal = false; //Lo utilizamos para saber si mostramos el div de total en la parte superior
 (function() {  
     var db = {
         loadData: 
@@ -8,6 +9,8 @@
                 var dFechaAltaHasta = (filter._fechaAlta.to !== null) ? (filter._fechaAlta.to.getFullYear() + '-' + (filter._fechaAlta.to.getMonth() + 1) + '-' + filter._fechaAlta.to.getDate()) : null;
                 var dFechaBajaDesde = (filter._fechaBaja.from !== null) ? (filter._fechaBaja.from.getFullYear() + '-' + (filter._fechaBaja.from.getMonth() + 1) + '-' + filter._fechaBaja.from.getDate()) : null;
                 var dFechaBajaHasta = (filter._fechaBaja.to !== null) ? (filter._fechaBaja.to.getFullYear() + '-' + (filter._fechaBaja.to.getMonth() + 1) + '-' + filter._fechaBaja.to.getDate()) : null;
+
+                showTotal = dFechaAltaDesde != null || dFechaAltaHasta != null || dFechaBajaDesde != null || dFechaBajaHasta != null;
 
                 $.ajax({
                     url: './class/globalclass/execfunction.php',
@@ -373,12 +376,17 @@ $(function() {
                 }
             ],
             onRefreshed: function(args) {
-        	var items = args.grid.option("data");
+        	    var items = args.grid.option("data");
                 args.grid._content.append(
                     "<tr><td class=\"jsgrid-cell jsgrid-align-right\" style=\"width: 80px;\"><strong>Registros devueltos</strong></td>" +
                     "<td class=\"jsgrid-cell jsgrid-align-left\" style=\"width: 80px;\" colspan=\"6\"><strong>" + items.length  + "</strong></td></tr>"
                 );
-              }
+                if (showTotal) {
+                    $("#spTotal").text(items.length);
+                    $("#divTotal").show();
+                    showTotal = false;
+                } else $("#divTotal").hide();
+            }
         });
     }
     

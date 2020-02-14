@@ -61,6 +61,17 @@
 			            <div class="sixteen columns">
                             <p class="tituloListado">Listado de Alumnos</p>
                             
+                            <div id="divTotal" class="recuadro" style="margin-bottom:5px;" >
+                                <div class="sixteen columns">
+                                    <div id="div">
+                                        <div>
+                                            <span class="spLegenda">Total de Alumnos: </span>
+                                            <span id="spTotal" class="spDescripcion"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div id="jsGrid"></div>
 
                             <div id="detailsDialog">

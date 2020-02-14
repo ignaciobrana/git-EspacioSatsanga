@@ -1,3 +1,4 @@
+var showTotal = false; //Lo utilizamos para saber si mostramos el div de total en la parte superior
 (function() {  
     var db = {
         loadData: 
@@ -9,6 +10,8 @@
                 var iNumeroRecibo = (filter._numeroRecibo !== undefined) ? filter._numeroRecibo : 0;
                 var iValor = (filter._valor !== undefined) ? filter._valor : 0;
                 var tPromocion = (filter._promocion !== undefined) ? filter._promocion : null;
+
+                showTotal = dFechaDesde != null || dFechaHasta != null;
                 
                 $.ajax({
                     url: './class/globalclass/execfunction.php',
@@ -302,6 +305,12 @@ $(function() {
                     items.forEach(function(item) {
                         total.Sum += parseInt(item._valor);
                     });
+
+                    if (showTotal) {
+                        $("#spTotal").text(total.Sum);
+                        $("#divTotal").show();
+                        showTotal = false;
+                    } else $("#divTotal").hide();
 
                     args.grid._content.append(
                             "<tr><td class=\"jsgrid-cell jsgrid-align-center\" style=\"width: 80px;\"><strong>Total</strong></td>" +

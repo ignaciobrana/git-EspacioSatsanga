@@ -62,9 +62,20 @@
                 <!-- Container Row -->
                 <div class="container">
                     <div class="row">
-			<div class="sixteen columns">
+			            <div class="sixteen columns">
                             <p class="tituloListado">Listado de Recibos</p>
                             
+                            <div id="divTotal" class="recuadro" style="margin-bottom:5px;" >
+                                <div class="sixteen columns">
+                                    <div id="divDatosCG">
+                                        <div>
+                                            <span class="spLegenda">Total: </span>
+                                            <span id="spTotal" class="spDescripcion"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div id="jsGrid"></div>
 
                             <div id="detailsDialog">
