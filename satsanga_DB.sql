@@ -380,19 +380,17 @@ CREATE TABLE IF NOT EXISTS `clasePrueba` (
 	`fecha` DATE NOT NULL,
 	`nombre` VARCHAR(50) NOT NULL,
 	`telefono` VARCHAR(50) NOT NULL,
-	`email` VARCHAR(255) NOT NULL,
+	`email` VARCHAR(255) NULL DEFAULT '',
 	`idClase` INT(11) NOT NULL,
 	`asistio` INT(11) NULL DEFAULT NULL,
 	`pago` INT(11) NULL DEFAULT NULL,
 	`promo` INT(11) NULL DEFAULT NULL COMMENT 'es en %',
-	`idComoConocio` INT(11) NOT NULL,
-	`idComoContacto` INT(11) NOT NULL,
+	`idComoConocio` INT(11) NULL,
+	`idComoContacto` INT(11) NULL,
 	`observaciones` VARCHAR(255) NOT NULL DEFAULT '',
 	`cancelada` TINYINT(1) NOT NULL DEFAULT '0',
 	PRIMARY KEY (`idClasePrueba`),
-	CONSTRAINT `FK_claseprueba_clase` FOREIGN KEY (`idClase`) REFERENCES `clase` (`idClase`),
-	CONSTRAINT `FK_claseprueba_comoconocio` FOREIGN KEY (`idComoConocio`) REFERENCES `comoconocio` (`idComoConocio`),
-	CONSTRAINT `FK_claseprueba_comocontacto` FOREIGN KEY (`idComoContacto`) REFERENCES `comocontacto` (`idComoContacto`)
+	CONSTRAINT `FK_claseprueba_clase` FOREIGN KEY (`idClase`) REFERENCES `clase` (`idClase`)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 -- La exportación de datos fue deseleccionada.

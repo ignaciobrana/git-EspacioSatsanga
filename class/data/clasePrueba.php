@@ -114,7 +114,9 @@ class ClasePrueba {
                 $telefono . '\', \'' . $email . '\', ' . $idClase . ', ' . 
                 ($asistio == null ? 'null' : $asistio) . ', ' . 
                 ($pago == null ? 'null' : $pago) . ', ' . 
-                ($promo == null ? 'null' : $promo) . ', ' . $idComoConocio . ', ' . $idComoContacto . ', \'' .
+                ($promo == null ? 'null' : $promo) . ', ' . 
+                ($idComoConocio == null ? 'null' : $idComoConocio) . ', ' . 
+                ($idComoContacto == null ? 'null' : $idComoContacto) . ', \'' .
                 $observaciones . '\', ' . ($cancelada == "true" ? 1 : 0) . ');';
         return $queryInsertUpdate;
     }

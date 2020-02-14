@@ -71,11 +71,11 @@ $(function () {
         rules: {
             dFecha: { required: true },
             tNombre: { required: true, maxlength: 50 },
-            tEmail: { required: true, email: true, maxlength: 255 },
+            tEmail: { email: true, maxlength: 255 },
             tTelefono: { maxlength: 50 },
             sClase: { required: true, min: 1 },
-            sComoConocio: { required: true, min: 1 },
-            sComoContacto: { required: true, min: 1 },
+            /*sComoConocio: { min: 1 },
+            sComoContacto: { min: 1 },*/
             tObservaciones: { maxlength: 255 }
         },
         invalidHandler: function (event, validator) {
