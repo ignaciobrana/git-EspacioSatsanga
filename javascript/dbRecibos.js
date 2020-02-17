@@ -307,7 +307,7 @@ $(function() {
                     });
 
                     if (showTotal) {
-                        $("#spTotal").text(total.Sum);
+                        $("#spTotal").text(items.length);
                         $("#divTotal").show();
                         showTotal = false;
                     } else $("#divTotal").hide();

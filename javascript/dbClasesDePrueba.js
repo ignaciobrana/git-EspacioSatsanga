@@ -238,7 +238,7 @@ $(function () {
         jsGrid.locale('es');
         
         $('#jsGrid').jsGrid({
-            height: '500px',
+            height: '1000px',
             width: '100%',
             filtering: true,
             editing: false,
