@@ -65,7 +65,7 @@
 			            <div class="sixteen columns">
                             <p class="tituloListado">Listado de Recibos</p>
                             
-                            <div id="divTotal" class="recuadro" style="margin-bottom:5px;" >
+                            <div id="divTotal" class="recuadro" style="margin-bottom:5px; width: 100px;" >
                                 <div class="sixteen columns">
                                     <div id="divDatosCG">
                                         <div>

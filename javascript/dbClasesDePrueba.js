@@ -333,7 +333,7 @@ $(function () {
                     modeSwitchButton: false,
                     editButton: false,
                     deleteButton: false,
-                    width: 75,
+                    width: 95,
                     headerTemplate: function () {
                         var $customAddButton = $('<button>').attr('type', 'button')
                             .attr('title', 'Agregar clase de prueba')

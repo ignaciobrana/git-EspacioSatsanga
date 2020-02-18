@@ -61,7 +61,7 @@
 			            <div class="sixteen columns">
                             <p class="tituloListado">Listado de Alumnos</p>
                             
-                            <div id="divTotal" class="recuadro" style="margin-bottom:5px;" >
+                            <div id="divTotal" class="recuadro" style="margin-bottom:5px; width: 150px;" >
                                 <div class="sixteen columns">
                                     <div id="div">
                                         <div>
