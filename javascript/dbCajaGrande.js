@@ -359,7 +359,7 @@ $(function() {
                     $("#spEgresosMes").text("$ 0");
                 } else {
                     $("#spIngresosMes").text("$ " + jsonBalance[0]["ingresos"]);
-                    $("#spEgresosMes").text("$ " + jsonBalance[0]["egresos"]);
+                    $("#spEgresosMes").text("$ " + (jsonBalance[0]["egresos"] != null ? jsonBalance[0]["egresos"] : "0"));
                 }
                 $("#spValorTotal").text("$ " + totalCaja);
             }
