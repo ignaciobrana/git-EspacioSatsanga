@@ -79,7 +79,7 @@
                                             <div class="col2"><input id="dFecha" name="dFecha" type="text" /></div>
                                         </div>
                                         <div>
-                                            <div class="col1"><label for="nombre">Nombre:</label></div>
+                                            <div class="col1"><label for="nombre">Nombre y Apellido:</label></div>
                                             <div class="col2"><input id="tNombre" name="tNombre" type="text" /></select></div>
                                         </div>
                                         <div>

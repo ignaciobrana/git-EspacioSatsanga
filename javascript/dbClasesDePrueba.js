@@ -261,7 +261,7 @@ $(function () {
                     }
                 },
                 { 
-                    name: '_nombre', type: 'text', width: 150, title: 'Nombre', sorting: true,
+                    name: '_nombre', type: 'text', width: 150, title: 'Nombre y Apellido', sorting: true,
                     itemTemplate: function(value) {
                         return value.split(" ", 2).join(" ");
                     }
