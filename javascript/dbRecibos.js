@@ -308,6 +308,7 @@ $(function() {
 
                     if (showTotal) {
                         $("#spTotal").text(items.length);
+                        $("#spTotalValor").text("$" + total.Sum);
                         $("#divTotal").show();
                         showTotal = false;
                     } else $("#divTotal").hide();

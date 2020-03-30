@@ -90,31 +90,31 @@
                     
                     <!--
                     <li id="menu-item-937" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-937">
-                        <a href="http://#">Otras Actividades<span></span></a>
+                        <a href="https://#">Otras Actividades<span></span></a>
                         <span class="nav_arrow"></span>
                         <div style="display: none;">
                             <ul class="sub-menu">
                                 <li id="menu-item-912" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-912">
-                                    <a href="http://www.espaciosatsanga.com/astrologia/entrevistas/"><span>Astrología<span></span></span></a>
+                                    <a href="https://www.espaciosatsanga.com/astrologia/entrevistas/"><span>Astrología<span></span></span></a>
                                     <div class="subsub_menu">
                                         <ul class="sub-menu">
-                                            <li id="menu-item-660" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-660"><a href="http://www.espaciosatsanga.com/astrologia/entrevistas/"><span>Entrevistas</span></a></li>
-                                            <li id="menu-item-2477" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2477"><a href="http://www.espaciosatsanga.com/astrologia/charlas-abiertas/"><span>Charlas Abiertas</span></a></li>
-                                            <li id="menu-item-2640" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2640"><a href="http://www.espaciosatsanga.com/astrologia/curso-trimestral/"><span>Curso Trimestral</span></a></li>
-                                            <li id="menu-item-2505" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2505"><a href="http://www.espaciosatsanga.com/astrologia/daniel-rotondaro-2/" class="last_submenu_item"><span>DANIEL ROTONDARO</span></a></li>
+                                            <li id="menu-item-660" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-660"><a href="https://www.espaciosatsanga.com/astrologia/entrevistas/"><span>Entrevistas</span></a></li>
+                                            <li id="menu-item-2477" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2477"><a href="https://www.espaciosatsanga.com/astrologia/charlas-abiertas/"><span>Charlas Abiertas</span></a></li>
+                                            <li id="menu-item-2640" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2640"><a href="https://www.espaciosatsanga.com/astrologia/curso-trimestral/"><span>Curso Trimestral</span></a></li>
+                                            <li id="menu-item-2505" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2505"><a href="https://www.espaciosatsanga.com/astrologia/daniel-rotondaro-2/" class="last_submenu_item"><span>DANIEL ROTONDARO</span></a></li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li id="menu-item-2556" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2556">
-                                    <a href="http://www.espaciosatsanga.com/terapia-floral/"><span>TERAPIA FLORAL<span></span></span></a>
+                                    <a href="https://www.espaciosatsanga.com/terapia-floral/"><span>TERAPIA FLORAL<span></span></span></a>
                                     <div class="subsub_menu"><ul class="sub-menu">
-                                    <li id="menu-item-709" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-709"><a href="http://www.espaciosatsanga.com/terapia-floral/sobre-las-flores-de-bach/"><span>Sobre Las Flores de Bach</span></a></li>
-                                    <li id="menu-item-707" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-707"><a href="http://www.espaciosatsanga.com/terapia-floral/entrevista-floral/"><span>Entrevista Floral</span></a></li>
-                                    <li id="menu-item-2622" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2622"><a href="http://www.espaciosatsanga.com/profesores/romina-melul/" class="last_submenu_item"><span>ROMINA MELUL</span></a></li>
+                                    <li id="menu-item-709" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-709"><a href="https://www.espaciosatsanga.com/terapia-floral/sobre-las-flores-de-bach/"><span>Sobre Las Flores de Bach</span></a></li>
+                                    <li id="menu-item-707" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-707"><a href="https://www.espaciosatsanga.com/terapia-floral/entrevista-floral/"><span>Entrevista Floral</span></a></li>
+                                    <li id="menu-item-2622" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2622"><a href="https://www.espaciosatsanga.com/profesores/romina-melul/" class="last_submenu_item"><span>ROMINA MELUL</span></a></li>
                                     </ul></div>
                                 </li>
-                                <li id="menu-item-2549" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2549"><a href="http://www.espaciosatsanga.com/terapia-sonora/"><span>TERAPIA SONORA</span></a></li>
-                                <li id="menu-item-712" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-712"><a href="http://www.espaciosatsanga.com/este-mes/talleresyretiros/" class="last_submenu_item"><span>TALLERES Y RETIROS</span></a></li>
+                                <li id="menu-item-2549" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2549"><a href="https://www.espaciosatsanga.com/terapia-sonora/"><span>TERAPIA SONORA</span></a></li>
+                                <li id="menu-item-712" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-712"><a href="https://www.espaciosatsanga.com/este-mes/talleresyretiros/" class="last_submenu_item"><span>TALLERES Y RETIROS</span></a></li>
                             </ul>
                         </div>
                     </li>-->
@@ -125,7 +125,7 @@
 
         <select id="select_menu" onchange="location = this.value">
             <option value="">Select Page</option>
-            <option value="http://www.espaciosatsanga.com/">Inicio</option>
+            <option value="https://www.espaciosatsanga.com/">Inicio</option>
             
             <option value="#">Personas</option>
             <option value="./estudiantes.php">&nbsp;&nbsp;&nbsp;&nbsp;Estudiantes</option>
@@ -147,18 +147,18 @@
             <option value="./empresas.php">&nbsp;&nbsp;&nbsp;&nbsp;Empresas</option>
             
             <!--<option value="./sueldos.php">Sueldos</option>
-            <option value="http://www.espaciosatsanga.com/astrologia/entrevistas/">&nbsp;&nbsp;&nbsp;&nbsp;Astrología</option>
-            <option value="http://www.espaciosatsanga.com/astrologia/entrevistas/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Entrevistas</option>
-            <option value="http://www.espaciosatsanga.com/astrologia/charlas-abiertas/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Charlas Abiertas</option>
-            <option value="http://www.espaciosatsanga.com/astrologia/curso-trimestral/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Curso Trimestral</option>
-            <option value="http://www.espaciosatsanga.com/astrologia/daniel-rotondaro-2/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DANIEL ROTONDARO</option>
-            <option value="http://www.espaciosatsanga.com/terapia-floral/">&nbsp;&nbsp;&nbsp;&nbsp;TERAPIA FLORAL</option>
-            <option value="http://www.espaciosatsanga.com/terapia-floral/sobre-las-flores-de-bach/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sobre Las Flores de Bach</option>
-            <option value="http://www.espaciosatsanga.com/terapia-floral/entrevista-floral/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Entrevista Floral</option>
-            <option value="http://www.espaciosatsanga.com/profesores/romina-melul/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMINA MELUL</option>
-            <option value="http://www.espaciosatsanga.com/terapia-sonora/">&nbsp;&nbsp;&nbsp;&nbsp;TERAPIA SONORA</option>
-            <option value="http://www.espaciosatsanga.com/este-mes/talleresyretiros/">&nbsp;&nbsp;&nbsp;&nbsp;TALLERES Y RETIROS</option>
-            <option value="http://www.espaciosatsanga.com/contact-us/">Contacto</option>-->
+            <option value="https://www.espaciosatsanga.com/astrologia/entrevistas/">&nbsp;&nbsp;&nbsp;&nbsp;Astrología</option>
+            <option value="https://www.espaciosatsanga.com/astrologia/entrevistas/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Entrevistas</option>
+            <option value="https://www.espaciosatsanga.com/astrologia/charlas-abiertas/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Charlas Abiertas</option>
+            <option value="https://www.espaciosatsanga.com/astrologia/curso-trimestral/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Curso Trimestral</option>
+            <option value="https://www.espaciosatsanga.com/astrologia/daniel-rotondaro-2/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DANIEL ROTONDARO</option>
+            <option value="https://www.espaciosatsanga.com/terapia-floral/">&nbsp;&nbsp;&nbsp;&nbsp;TERAPIA FLORAL</option>
+            <option value="https://www.espaciosatsanga.com/terapia-floral/sobre-las-flores-de-bach/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sobre Las Flores de Bach</option>
+            <option value="https://www.espaciosatsanga.com/terapia-floral/entrevista-floral/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Entrevista Floral</option>
+            <option value="https://www.espaciosatsanga.com/profesores/romina-melul/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROMINA MELUL</option>
+            <option value="https://www.espaciosatsanga.com/terapia-sonora/">&nbsp;&nbsp;&nbsp;&nbsp;TERAPIA SONORA</option>
+            <option value="https://www.espaciosatsanga.com/este-mes/talleresyretiros/">&nbsp;&nbsp;&nbsp;&nbsp;TALLERES Y RETIROS</option>
+            <option value="https://www.espaciosatsanga.com/contact-us/">Contacto</option>-->
         </select>							
         <!-- Main Navigation::END -->
 			

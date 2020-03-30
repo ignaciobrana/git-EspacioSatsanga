@@ -2,8 +2,8 @@
 Theme Name: Terra
 Description: A business, portfolio and blog theme.
 Author: BlueOwlCreative
-Theme URI: http://blueowlcreative.com/wp/terra
-Author URI: http://blueowlcreative.com
+Theme URI: https://blueowlcreative.com/wp/terra
+Author URI: https://blueowlcreative.com
 Version: 1.1
 License: GNU General Public License
 License URI: license.txt
@@ -87,7 +87,7 @@ zx
 
 .section_big_title h2 { font-family: 'Lato', arial, sans-serif; font-size:12px; font-style:normal; color:#fff; background: none }
 
-/*.header { background: url("http://www.paula.webconversion.com.ar/wordpress/wp3/wp-content/uploads/header.png") no-repeat 0 0 !important; padding: 5px 0 15px; } */
+/*.header { background: url("https://www.paula.webconversion.com.ar/wordpress/wp3/wp-content/uploads/header.png") no-repeat 0 0 !important; padding: 5px 0 15px; } */
 
 .block_header #logo { text-align:center }
 
@@ -216,7 +216,7 @@ position: relative;
 			height: 60vh;
 			float: left;
 			width: 60%;
-			background-image: url("http://www.espaciosatsanga.com/wp-content/uploads/Fotos-home1.jpg");
+			background-image: url("https://www.espaciosatsanga.com/wp-content/uploads/Fotos-home1.jpg");
 			background-position: center center;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
@@ -230,7 +230,7 @@ position: relative;
 			height: 60vh;
 			float: left;		
 			width: 40%;
-			background-image: url("http://www.espaciosatsanga.com/wp-content/uploads/yoga-nuevos-horarios-abril.jpg");
+			background-image: url("https://www.espaciosatsanga.com/wp-content/uploads/yoga-nuevos-horarios-abril.jpg");
 			background-position: center center;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
@@ -320,7 +320,7 @@ background-color: #6a2e828c;
 		@media only screen and (max-width: 500px) {
 		    .hero-shot{
 		    	width:100%;
-		    	background-image: url("http://www.espaciosatsanga.com/wp-content/uploads/Home_izquierda_responsive.jpg");
+		    	background-image: url("https://www.espaciosatsanga.com/wp-content/uploads/Home_izquierda_responsive.jpg");
 				background-position: left center;
 		    }
 		    .text-left {

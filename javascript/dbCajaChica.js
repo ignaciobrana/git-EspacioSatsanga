@@ -137,6 +137,9 @@ var showDetailsDialog = function(dialogType, movimientoCajaChica) {
         $('#sRecibo').val(movimientoCajaChica._recibo._idRecibo).select2();
     }
 
+    //Deshabilitamos el control si se trata de una edición y está seleccionado como "Retiro"
+    //$("#sTipoMovimientoCC").prop("disabled", $('#sTipoMovimientoCC').find("option:selected").text() === "Retiro");
+
     if ($('#sTipoMovimientoCC').find("option:selected").text() === "Recibo") {
         $('#divRecibo').show();
         $('#divEmpleadoAdelanto').hide();

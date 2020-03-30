@@ -6,7 +6,7 @@
                     <h3 class="margined_left">Sitio</h3>
                     <div class="menu-footer-menu-container">
                         <ul id="menu-footer-menu" class="menu margined_left">
-                            <li><a href="http://www.espaciosatsanga.com/">Inicio</a></li>
+                            <li><a href="https://www.espaciosatsanga.com/">Inicio</a></li>
                             <li><a href="./estudiantes.php">Estudiantes</a></li>
                             <li><a href="./empleados.php">Empleados</a></li>
                             <li><a href="./recibos.php">Recibos</a></li>

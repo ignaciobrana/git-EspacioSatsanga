@@ -241,7 +241,7 @@ jQuery(document).ready(function($){
     // Resize Videos
     jQuery(function() {
         
-        var $allVideos = jQuery("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed").not('.rev_slider iframe'),
+        var $allVideos = jQuery("iframe[src^='https://player.vimeo.com'], iframe[src^='https://www.youtube.com'], object, embed").not('.rev_slider iframe'),
         $fluidEl = jQuery(".video_max_scale");
     	    	
     	$allVideos.each(function() {

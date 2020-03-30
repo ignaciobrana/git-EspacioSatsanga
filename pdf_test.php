@@ -23,7 +23,7 @@
         // Image($file, $x='', $y='', $w=0, $h=0, $type='', $link='', $align='', $resize=false, $dpi=300, $palign='', $ismask=false, $imgmask=false, $border=0, $fitbox=false, $hidden=false, $fitonpage=false)
 
         // Image example with resizing
-        $pdf->Image('./img/headerlogo.png', 22, 22, 70, 25, 'png', 'http://www.espaciosatsanga.com/', '', true, 300, '', false, false, 0, false, false, false);
+        $pdf->Image('./img/headerlogo.png', 22, 22, 70, 25, 'png', 'https://www.espaciosatsanga.com/', '', true, 300, '', false, false, 0, false, false, false);
 
 	$content .= '
 		<div style="border: 2px solid black; border-radius: 10px; padding: 10px; display:inline-block;">

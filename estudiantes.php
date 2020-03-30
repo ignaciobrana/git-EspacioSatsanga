@@ -11,7 +11,7 @@
         <title>Espacio Satsanga - Estudiantes</title>
         <link rel="icon" type="image/x-icon" href="./img/icon.png">
         
-        <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         
         <link id="boc-style-css" href="./css/style.css" rel="stylesheet" type="text/css" media="all">
         <link rel="stylesheet" id="boc-fonts-css" href="https://fonts.googleapis.com/css?family=Lato%3A400%2C700%2C900%7COpen+Sans%3A300italic%2C400italic%2C600italic%2C400%2C300%2C600%2C900%7CPT+Serif%3A400%2C400italic&amp;ver=4.9.6" type="text/css" media="all">
