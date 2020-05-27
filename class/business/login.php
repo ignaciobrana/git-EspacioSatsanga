@@ -1,6 +1,8 @@
 <?php
 namespace Business;
 
+use Exception;
+
 //defined("APPPATH") OR die("Access denied");
 
 //use Data\Usuario,
@@ -40,6 +42,7 @@ class Login {
             $hashPassword = \GlobalClass\Helper::getPasswordHash($password);
             $usuario = \Data\Usuario::instance()->getUsuario($userName, $hashPassword);
             return $usuario;
+            //return 1;
         } catch(Exception $ex) {
             throw new Exception('Business\Usuario: ' . $ex->getMessage());
         }

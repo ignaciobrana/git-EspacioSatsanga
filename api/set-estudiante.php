@@ -1,53 +1,51 @@
 <?php
 
-namespace GlobalClass;
+ob_start();
 
-include_once '../class/globalclass/database.php';
-include_once '../class/globalclass/helper.php';
-include_once '../class/business/estudiante.php';
-include_once '../class/data/estudiante.php';
+$api = true; //Seteamos esta variable que indica a iniPage que se está llamando desde una api
+include_once '../iniPage.php';
 
-use Business\Estudiante;
+try {
+    $response = array();
 
-//class ApiEstudiante {
+    $json = file_get_contents('php://input');
+    $obj = json_decode($json, true);
+
+    //echo $json;
     
-    //function setEstudiante($idEstudiante, $nombreApellido, $fechaNacimiento, $idGenero, $idEstadoEstudiante,
-    //                $idComoConocio, $email, $observaciones, $celular, $telefono, $fechaAlta, 
-    //                $fechaBaja) {
-        $response = array();
+    if (isset($obj["idEstudiante"]) && isset($obj["nombreApellido"]) && isset($obj["fechaNacimiento"]) &&
+        isset($obj["idComoConocio"]) && isset($obj["email"]) && /*isset($obj["observaciones"]) &&
+        isset($obj["celular"]) && isset($obj["telefono"]) &&*/ isset($obj["fechaAlta"]) &&
+        isset($obj["fechaBaja"]) && isset($obj["idGenero"]) && isset($obj["idEstadoEstudiante"])) {
 
-        if (isset($_POST["idEstudiante"]) && isset($_POST["nombreApellido"]) && isset($_POST["fechaNacimiento"]) &&
-            isset($_POST["idComoConocio"]) && isset($_POST["email"]) && isset($_POST["observaciones"]) &&
-            isset($_POST["celular"]) && isset($_POST["telefono"]) && isset($_POST["fechaAlta"]) &&
-            isset($_POST["fechaBaja"]) && isset($_POST["idGenero"]) && isset($_POST["idEstadoEstudiante"])) {
-        
+            $idEstudiante = $obj["idEstudiante"];
+            $nombreApellido = $obj["nombreApellido"]; 
+            $fechaNacimiento = $obj["fechaNacimiento"]; 
+            $idGenero = $obj["idGenero"];
+            $idEstadoEstudiante = $obj["idEstadoEstudiante"];
+            $idComoConocio = $obj["idComoConocio"]; 
+            $email = $obj["email"]; 
+            $observaciones = $obj["observaciones"]; 
+            $celular = $obj["celular"]; 
+            $telefono = $obj["telefono"];
+            $fechaAlta = $obj["fechaAlta"];
+            $fechaBaja = $obj["fechaBaja"];
 
-                $idEstudiante = $_POST["idEstudiante"];
-                $nombreApellido = $_POST["nombreApellido"]; 
-                $fechaNacimiento = $_POST["fechaNacimiento"]; 
-                $idGenero = $_POST["idGenero"];
-                $idEstadoEstudiante = $_POST["idEstadoEstudiante"];
-                $idComoConocio = $_POST["idComoConocio"]; 
-                $email = $_POST["email"]; 
-                $observaciones = $_POST["observaciones"]; 
-                $celular = $_POST["celular"]; 
-                $telefono = $_POST["telefono"];
-                $fechaAlta = $_POST["fechaAlta"];
-                $fechaBaja = $_POST["fechaBaja"];
+            $returnValue = \Business\Estudiante::instance()->setEstudiante($idEstudiante, $nombreApellido, $fechaNacimiento, $idGenero, $idEstadoEstudiante,
+                            $idComoConocio, $email, $observaciones, $celular, $telefono, $fechaAlta, 
+                            $fechaBaja);
 
-                $returnValue = Estudiante::instance()->setEstudiante($idEstudiante, $nombreApellido, $fechaNacimiento, $idGenero, $idEstadoEstudiante,
-                                $idComoConocio, $email, $observaciones, $celular, $telefono, $fechaAlta, 
-                                $fechaBaja);
-
-                $response["status"] = isset($returnValue) ? "success" : "error";
-            
-        } else {
-            $response["status"] = "error";
-        }
-        $json_returnValue = json_encode($response);
-        echo $json_returnValue;
-    //}
-
-//}
-
+            $response["status"] = isset($returnValue) ? "success" : "error";
+    } else { 
+        $response["status"] = "error"; 
+        $response["error"] = "Faltan datos."; 
+    }
+    $json_returnValue = json_encode($response);
+    echo $json_returnValue;
+} catch (\Exception $ex) {
+    echo json_encode(array(
+        'status' => 'error',
+        'error' => 'Error realizando el guardado de datos: ' . $ex->getMessage()
+    ));
+}
 ?>
