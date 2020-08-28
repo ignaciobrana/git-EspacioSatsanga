@@ -52,6 +52,7 @@ var showTotal = false; //Lo utilizamos para saber si mostramos el div de total e
 $(function() {
     var flagFinCargaDatosSelectGrid = false;
     //Configuramos el lenguaje de datepicker
+    debugger;
     $.datepicker.setDefaults($.datepicker.regional['es']);
     
     //Primero cargamos los estadosEstudiantes
