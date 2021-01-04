@@ -9,8 +9,9 @@ try {
     $json = file_get_contents('php://input');
     $obj = json_decode($json, true);
 
-    $uu =  $obj["username"];
-    $pass = $obj["password"];
+    $uu =  isset($obj["username"]) ? $obj["username"] : (isset($_POST["username"]) ? $_POST["username"] : "");
+    $pass =  isset($obj["password"]) ? $obj["password"] : (isset($_POST["password"]) ? $_POST["password"] : "");
+
     //$uu =  $_REQUEST["username"];
     //$pass = $_REQUEST["password"];
     
